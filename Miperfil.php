@@ -72,35 +72,49 @@ if (isset($_SESSION['user'])) {
         </div>
     </header>
 
-    <!-- endheader -->
     <h1 class="m-5">Bienvenido <?php echo $user->getnickname(); ?></h1>
-    <div class="row justify-content-center h-100">
-        <div class="col-lg-8 mt-5 mt-lg-0">
-            <div class="col-sm-12 align-self-center text-center">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <form action="forms/upload.php" method="post" role="form" class="php-email-form" enctype="multipart/form-data" data-aos="fade-down-left">
-                            <div class="form-row justify-content-center">
-                                <div class="col-md-6 form-group">
-                                    <h3>Subir Imagen</h3>
-                                    <input type="file" class="form-control" name="mp" id="mipp" placeholder="Imagen"/>
-                                    <div class="validate"></div>
+    <section id="" class="login section-bg">
+        <div class="containe ">
+            
+            <div class="row justify-content-center h-100">
+                <div class="col-lg-8 mt-5 mt-lg-0">
+                    <div class="col-sm-12 align-self-center text-center">
+                        <div class="card shadow">
+                            <div class="card-body">
+                                <div class="row justify-content-center h-100">
+                                    <div class="col-lg-8 mt-5 mt-lg-0">
+                                        <form action="forms/upload.php" method="post" role="form" class="php-email-form" enctype="multipart/form-data" data-aos="fade-down-left">
+                                            <div class="form-row justify-content-center">
+                                                <div class="col-md-6 form-group">
+                                                    <h3>Subir Imagen</h3>
+                                                    <input type="file" class="form-control" name="mp" id="mipp" placeholder="Imagen" data-rule="required" data-msg="Por favor  ingrese una imagen valida"/>
+                                                    <div class="validate"></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <div class="loading">Loading</div>
+                                                <div class="okey-message"></div>
+                                                <div class="error-message"></div>
+                                            </div>
+                                            <div class="text-center"><button type="submit">Subir Imagen</button></div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="text-center"><button type="submit">Subir Imagen</button></div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section><!-- End Contact Section -->
 
 
     <!-- Vendor JS Files -->
     <script src="assets/vendor/jquery/jquery.min.js"></script>
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-    <!-- <script src="assets/vendor/php-email-form/validate.js"></script> -->
+    <script src="assets/vendor/php-email-form/validateimg.js"></script> 
     <script src="assets/vendor/jquery-sticky/jquery.sticky.js"></script>
     <script src="assets/vendor/venobox/venobox.min.js"></script>
     <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>

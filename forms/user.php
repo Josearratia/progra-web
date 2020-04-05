@@ -1,6 +1,6 @@
 <?php
 /* error_5 error al registrar usuario e intentar agregar login */
-include_once 'forms/Dbconnection.php';
+include_once 'Dbconnection.php';
 include_once 'generatecode.php';
 
 class login extends DB
