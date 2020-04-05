@@ -63,10 +63,12 @@ if (isset($_SESSION['user'])) {
 
             <nav class="nav-menu d-none d-lg-block">
                 <ul class="nav-inner">
-                    <li class="active"><a href="dashboard.php">Home</a></li>
+                    
+                    <!-- <li class="active"><a href="dashboard.php">Inicio</a></li> -->
                     <li class="active"><a href="Miperfil.php">Mi perfil</a></li>
                     <li class="nav-logo"><a href="index.php"><img src="assets/img/xbox-control-menu.png" alt="" class="img-fluid"></a></li>
-                    <li class="active"><a href="/forms/logout.php">Exit</a></li>
+                    <li class="active"><a href="/forms/logout.php">Cerrar Sesión</a></li>
+                    <li class="nav-logo"><img src="assets/img/personal.jpg" alt="Avatar" class="avatar"></li>
                 </ul>
             </nav><!-- .nav-menu -->
         </div>

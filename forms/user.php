@@ -9,6 +9,7 @@ class login extends DB
     private $rol;
     private $username;
     private $borrado;
+    private $userfoto;
     private $userid;
     private $unidatausercode; /* codigo de usuario existente */
 
@@ -166,8 +167,14 @@ class login extends DB
             $this->nombre = $currentUser['nickname_usuario'];
             $this->rol = $currentUser['Rol_usuario'];
             $this->borrado = $currentUser['Borrado'];
+            $this->userfoto = $currentUser['NombreFotoPF_usuario'];
             $this->unidatausercode = $currentUser['Codigo_usuario'];
         }
+    }
+
+    public function updateimg($imgname,$id){
+        $query = $this->connect()->prepare('UPDATE `usuarios` SET NombreFotoPF_usuario = :imgname WHERE idUsuario = :userid');
+        $query->execute(['imgname' => $imgname, 'userid' => $id]);
     }
 
 
@@ -199,5 +206,10 @@ class login extends DB
     public function getuserid()
     { // id de usuario despues de un login 
         return $this->userid;
+    }
+
+    public function getuserfoto()
+    { // foto de usuario despues de un login 
+        return $this->userfoto;
     }
 }
