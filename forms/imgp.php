@@ -1,14 +1,4 @@
 <?php
-    /* return ruta de img de pp */
-/*     include_once 'user.php';  
-    include_once 'Session.php';
-    
-    $userSession = new UserSession();
-    $user = new login(); 
-   
-    $user->setUserAndfk($userSession->getCurrentUser()); */ 
-
-
     $finalruta = "";
     $directorioup = "/assets/upload/img/uploadimg/";
     $directoriodonthave = "/assets/img/";
