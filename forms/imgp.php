@@ -20,6 +20,14 @@
         /* echo "ya tiene imagen ruta: "; */
         
         $finalruta = $directorioup . $imagen;
+
+        if(file_exists ( $finalruta )){
+            /* el archivo existe */
+        }else{
+            $finalruta = $directoriodonthave . "img_avatar.png"; /* Error de registro en la bd */ 
+            $user->updateimg("img_avatar.png",$user->getuserid()); /* solucion al error deleted*/
+            /* update img  */
+        }
         
     }else{
         /* NO tiene imagen por lo tanto usar una estandar para mostrar algo */
