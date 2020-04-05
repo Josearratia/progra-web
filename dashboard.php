@@ -16,6 +16,7 @@ if (isset($_SESSION['user'])) {
 } else {
     include_once 'index.php';
 }
+include_once 'forms/imgp.php';
 ?>
 
 <!DOCTYPE html>
@@ -58,7 +59,8 @@ if (isset($_SESSION['user'])) {
 
             <!-- The main logo is shown in mobile version only. The centered nav-logo in nav menu is displayed in desktop view  -->
             <div class="logo d-block d-lg-none">
-                <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
+                <a href="index.php"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
+                <img src="<?php echo $finalruta; ?>" alt="Avatar" class="img-fluid avatar">
             </div>
 
             <nav class="nav-menu d-none d-lg-block">
@@ -68,9 +70,13 @@ if (isset($_SESSION['user'])) {
                     <li class="active"><a href="Miperfil.php">Mi perfil</a></li>
                     <li class="nav-logo"><a href="index.php"><img src="assets/img/xbox-control-menu.png" alt="" class="img-fluid"></a></li>
                     <li class="active"><a href="/forms/logout.php">Cerrar Sesión</a></li>
-                    <li class="nav-logo"><img src="assets/img/personal.jpg" alt="Avatar" class="avatar"></li>
+                   
                 </ul>
             </nav><!-- .nav-menu -->
+        </div>
+        <h6 style="margin-right: 1em;">Monedas: <?php echo $user->getuserpoints(); ?></h6>
+        <div class="nav-pp">
+            <img src="<?php echo $finalruta; ?>" alt="Avatar" class="avatar">
         </div>
     </header>
 

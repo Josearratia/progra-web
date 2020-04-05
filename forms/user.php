@@ -11,31 +11,35 @@ class login extends DB
     private $borrado;
     private $userfoto;
     private $userid;
+    private $userpoints;
     private $unidatausercode; /* codigo de usuario existente */
 
-    private function newcodeuser(){
+    private function newcodeuser()
+    {
         $code = new unicodeuser();
         $newgeneratecode = $code->generatecode($code->generatelong());
         return $newgeneratecode;
     }
 
-    private function findreferido($unicode){
+    private function findreferido($unicode)
+    {
         $referido = $this->connect()->prepare('SELECT * FROM `usuarios` WHERE Codigo_usuario = ?');
         $referido->execute([$unicode]);
         return $referido;
     }
 
-    private function testcode($nickname){
+    private function testcode($nickname)
+    {
         $tempresult = $this->newcodeuser();
         $newcode = $nickname . '-' . $tempresult;
         $generatecode_exist = $this->findreferido($newcode);
         if ($generatecode_exist->rowCount()) {
             $this->testcode($nickname); /* se vuelve a llamar hasta encontrar un codigo que no este en uso */
-        }else{
+        } else {
             return $newcode; /* nuevo codigo de usuario */
         }
     }
-    
+
     public function adduser(
         $codigo,
         $user,
@@ -49,7 +53,7 @@ class login extends DB
         $Telefono
     ) {
         $md5pass = md5($password);
-       
+
         $newcodeuser = $this->testcode($nickname);
 
         $exist = $this->connect()->prepare('SELECT * FROM login WHERE User_login = :user AND password_login = :pass LIMIT 1');
@@ -59,7 +63,7 @@ class login extends DB
             return "El Usuario que ingresaste ya esta siendo usado";
         } else {
 
-            if ($codigo != ""){
+            if ($codigo != "") {
                 /* si encuentra al usuario */
                 $resultado = $this->findreferido($codigo);
                 if ($resultado->rowCount()) {
@@ -169,10 +173,36 @@ class login extends DB
             $this->borrado = $currentUser['Borrado'];
             $this->userfoto = $currentUser['NombreFotoPF_usuario'];
             $this->unidatausercode = $currentUser['Codigo_usuario'];
+            $this->userpoints = $currentUser['Monedas_usuario'];
         }
     }
 
-    public function updateimg($imgname,$id){
+    public function updatesocial($facebook, $instagram, $twitch, $youtube, $twitter, $id)
+    {
+        $exist = $this->connect()->prepare('SELECT * FROM `usuarios` WHERE idUsuario = :id');
+        $exist->execute(['id' => $id]);
+
+        if ($exist->rowCount()) {
+            $query = $this->connect()->prepare('UPDATE `usuarios` SET `FB_usuario`=:facebook,
+             `YT_usuairo`=:youtube,
+              `Twitch_usuario`=:twitch,
+               `Twitter_usuario`=:twitter,
+                `IG_usuario`=:instagram 
+                WHERE idUsuario = :userid');
+
+            $query->execute([
+                'facebook' => $facebook, 'youtube' => $youtube, 'twitch' => $twitch, 'twitter' => $twitter,
+                'instagram' => $instagram, 'userid' => $id
+            ]);
+            return "Datos Guardados";
+        }else {
+            return "A Ocurrido un error";
+        }
+    }
+
+    public function updateimg($imgname, $id)
+    {
+
         $query = $this->connect()->prepare('UPDATE `usuarios` SET NombreFotoPF_usuario = :imgname WHERE idUsuario = :userid');
         $query->execute(['imgname' => $imgname, 'userid' => $id]);
     }
@@ -211,5 +241,10 @@ class login extends DB
     public function getuserfoto()
     { // foto de usuario despues de un login 
         return $this->userfoto;
+    }
+
+    public function getuserpoints()
+    { // foto de usuario despues de un login 
+        return $this->userpoints;
     }
 }

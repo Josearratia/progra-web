@@ -10,8 +10,8 @@
         /* echo "ya tiene imagen ruta: "; */
         
         $finalruta = $directorioup . $imagen;
-
-        if(file_exists ( $finalruta )){
+        
+        if(file_exists($_SERVER['DOCUMENT_ROOT'].$finalruta )){
             /* el archivo existe */
         }else{
             $finalruta = $directoriodonthave . "img_avatar.png"; /* Error de registro en la bd */ 
