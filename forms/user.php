@@ -109,6 +109,8 @@ class login extends DB
                         NULL, $idreferido, $id
                     ]);
 
+                    /* UPDATE COINS */
+                    $this->updateCOINS($idreferido);
                     return "Usuario Agregado"; /* Usuario Agregado con referencia */
                 } else {
                     /* si no encuentra al usuario */
@@ -185,6 +187,42 @@ class login extends DB
             $this->user_yt = $currentUser['YT_usuairo'];
             $this->user_in = $currentUser['IG_usuario'];
         }
+    }   
+
+    public function updateCOINS($id)
+    {
+        /* monedas a agregar */
+        $addcoins = 0;
+        $usercoins = 0;
+        $coins = $this->connect()->prepare('SELECT * FROM `promociones` WHERE Promociones_id = :promocion ');
+        $coins->execute(['promocion' => 1]);
+
+        foreach ($coins as $currentUser) {
+            $addcoins = $currentUser['Monedas'];
+        }
+        
+
+        $usuario = $this->connect()->prepare('SELECT * FROM `usuarios` WHERE idUsuario = :id');
+        $usuario->execute(['id' => $id]);
+
+        if ($usuario->rowCount()) {
+
+            foreach ($usuario as $currentUser) {
+                $usercoins = $currentUser['Monedas_usuario'];
+             }
+
+
+            $agregar = $usercoins + $addcoins;
+
+            $query = $this->connect()->prepare('UPDATE `usuarios` SET `Monedas_usuario` = :monedas WHERE idUsuario = :userid');
+
+            $query->execute([
+                'monedas' => $agregar,
+                'userid' => $id
+            ]);
+
+            
+        } 
     }
 
 

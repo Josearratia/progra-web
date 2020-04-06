@@ -67,11 +67,13 @@ include_once 'forms/imgp.php';
                 <ul class="nav-inner">
                     <!-- <li class="active"><a href="dashboard.php">Inicio</a></li> -->
                     <li class="active"><a href="Miperfil.php">Mi perfil</a></li>
-                    <?php if($user->getrol() != 2) { echo '<li class="active"><a href="admin.php">Administracion</a></li>'; } ?>
+                    <?php if ($user->getrol() != 2) {
+                        echo '<li class="active"><a href="admin.php">Administracion</a></li>';
+                    } ?>
                     <li class="nav-logo"><a href="index.php"><img src="assets/img/xbox-control-menu.png" alt="" class="img-fluid"></a></li>
-                    <li class="active"><a href="referidos.php">Referidos</a></li>
+                    <!-- <li class="active"><a href="referidos.php">Referidos</a></li> -->
                     <li class="active"><a href="/forms/logout.php">Cerrar Sesión</a></li>
-                   
+
                 </ul>
             </nav><!-- .nav-menu -->
         </div>
@@ -89,11 +91,40 @@ include_once 'forms/imgp.php';
                 <div class="card shadow">
                     <div class="card-body">
                         <h1 class="m-5">Bienvenido <?php echo $user->getnickname(); ?></h1>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+
+    <div class="row justify-content-center h-100">
+        <div class="col-lg-8 mt-5 mt-lg-0">
+            <div class="col-sm-12 align-self-center text-center">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h1>Referidos</h1>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Borrar</th> <!-- Borrado -->
+                                        <th scope="col">Codigo de usuario</th> <!-- Codigo_usuario -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
     <!-- Vendor JS Files -->
