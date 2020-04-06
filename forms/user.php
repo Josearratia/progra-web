@@ -13,6 +13,11 @@ class login extends DB
     private $userid;
     private $userpoints;
     private $unidatausercode; /* codigo de usuario existente */
+    private $user_fb;
+    private $user_tw;
+    private $user_ttw;
+    private $user_yt;
+    private $user_in;
 
     private function newcodeuser()
     {
@@ -174,6 +179,11 @@ class login extends DB
             $this->userfoto = $currentUser['NombreFotoPF_usuario'];
             $this->unidatausercode = $currentUser['Codigo_usuario'];
             $this->userpoints = $currentUser['Monedas_usuario'];
+            $this->user_fb = $currentUser['FB_usuario'];
+            $this->user_tw = $currentUser['Twitch_usuario'];
+            $this->user_ttw = $currentUser['Twitter_usuario'];
+            $this->user_yt = $currentUser['YT_usuairo'];
+            $this->user_in = $currentUser['IG_usuario'];
         }
     }
 
@@ -246,5 +256,31 @@ class login extends DB
     public function getuserpoints()
     { // foto de usuario despues de un login 
         return $this->userpoints;
+    }
+
+
+    public function getuserfb()
+    { // face de usuario despues de un login 
+        return $this->user_fb;
+    }
+
+    public function getusertw()
+    { // twitch de usuario despues de un login 
+        return $this->user_tw;
+    }
+
+    public function getuserttw()
+    { // twi de usuario despues de un login 
+        return  $this->user_ttw;
+    }
+
+    public function getuseryt()
+    { // youtube de usuario despues de un login 
+        return $this->user_yt;
+    }
+
+    public function getuserin()
+    { // instagram de usuario despues de un login 
+        return  $this->user_in;
     }
 }

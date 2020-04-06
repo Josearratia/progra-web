@@ -64,7 +64,7 @@ include_once 'forms/imgp.php';
                 <a href="index.php"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
                 <img src="<?php echo $finalruta; ?>" alt="Avatar" class="img-fluid avatar">
             </div>
-
+            
             <nav class="nav-menu d-none d-lg-block">
                 <ul class="nav-inner">
 
@@ -83,13 +83,22 @@ include_once 'forms/imgp.php';
     </header>
 
 
-    <div class="m-5 text-center">
-        <h1>Bienvenido <?php echo $user->getnickname(); ?></h1>
+    <div class="row justify-content-center h-100">
+        <div class="col-lg-8 mt-5 mt-lg-0">
+            <div class="col-sm-12 align-self-center text-center">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h1 class="m-5">Bienvenido <?php echo $user->getnickname(); ?></h1>
+                        <h5>Invita amigos usando tu codigo para ganar más monedas</h5>
+                        <h6 class="text-info"><?php echo $user->getusercode(); ?></h6>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <section id="" class="login section-bg">
         <div class="containe ">
-
             <div class="row justify-content-center h-100">
                 <div class="col-lg-8 mt-5 mt-lg-0">
                     <div class="col-sm-12 align-self-center text-center">
@@ -140,35 +149,35 @@ include_once 'forms/imgp.php';
 
                                             <div class="form-row justify-content-center">
                                                 <div class="col-md-6 form-group">
-                                                    <input type="text" name="user-Facebook" class="form-control" id="facebook" placeholder="Facebook" />
+                                                    <input type="text" name="user-Facebook" class="form-control" id="facebook" placeholder="Facebook" value="<?php echo $user->getuserfb() ?>" />
                                                     <div class="validate"></div>
                                                 </div>
                                             </div>
 
                                             <div class="form-row justify-content-center">
                                                 <div class="col-md-6 form-group">
-                                                    <input type="text" name="user-Twitch" class="form-control" id="twitch" placeholder="Twitch" />
+                                                    <input type="text" name="user-Twitch" class="form-control" id="twitch" placeholder="Twitch" value="<?php echo $user->getusertw() ?>" />
                                                     <div class="validate"></div>
                                                 </div>
                                             </div>
 
                                             <div class="form-row justify-content-center">
                                                 <div class="col-md-6 form-group">
-                                                    <input type="text" name="user-Youtube" class="form-control" id="youtube" placeholder="Youtube" />
+                                                    <input type="text" name="user-Youtube" class="form-control" id="youtube" placeholder="Youtube" value="<?php echo $user->getuseryt() ?>" />
                                                     <div class="validate"></div>
                                                 </div>
                                             </div>
 
                                             <div class="form-row justify-content-center">
                                                 <div class="col-md-6 form-group">
-                                                    <input type="text" name="user-Twitter" class="form-control" id="twitter" placeholder="Twitter" />
+                                                    <input type="text" name="user-Twitter" class="form-control" id="twitter" placeholder="Twitter" value="<?php echo $user->getuserttw() ?>" />
                                                     <div class="validate"></div>
                                                 </div>
                                             </div>
 
                                             <div class="form-row justify-content-center">
                                                 <div class="col-md-6 form-group">
-                                                    <input type="text" name="user-Instagram" class="form-control" id="instagram" placeholder="Instagram" />
+                                                    <input type="text" name="user-Instagram" class="form-control" id="instagram" placeholder="Instagram" value="<?php echo $user->getuserin() ?>" />
                                                     <div class="validate"></div>
                                                 </div>
                                             </div>
