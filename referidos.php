@@ -1,10 +1,12 @@
 <?php
 
 include_once 'forms/user.php';
+include_once 'forms/referidos.php';
 include_once 'forms/Session.php';
 
 $userSession = new UserSession();
 $user = new login();
+$referidos = new referidos();
 
 if (isset($_SESSION['user'])) {
     $user->setUserAndfk($userSession->getCurrentUser());
@@ -111,11 +113,29 @@ include_once 'forms/imgp.php';
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Borrar</th> <!-- Borrado -->
-                                        <th scope="col">Codigo de usuario</th> <!-- Codigo_usuario -->
+                                        <th scope="col">Codigo De Referido</th> <!-- Borrado -->
+                                        <th scope="col">Apodo Del Referido</th> <!-- Codigo_usuario -->
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php
+                                    $data = array();
+                                    $referidos->setreferidos($user->getuserid());
+                                    $data = $referidos->get();
+                                    
+                                    /* print_r($data); */
+                                    
+                                    $i = 0;
+
+                                    for($i = 0; $i < sizeof($data); $i++){
+                                        echo "<tr>";
+                                        echo '<th scope="row">' . ($i+1) . '</th>';
+                                        
+                                        echo '<td>' . $data[$i]['Nombre_usuario'] . '</td>'; 
+                                        echo '<td>' . $data[$i]['nickname_usuario'] . '</td>';
+                                        echo '</tr>';
+                                    }
+                                    ?>
                                 </tbody>
                             </table>
                         </div>

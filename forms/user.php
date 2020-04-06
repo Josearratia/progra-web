@@ -12,6 +12,7 @@ class login extends DB
     private $userfoto;
     private $userid;
     private $userpoints;
+    private $correo;
     private $unidatausercode; /* codigo de usuario existente */
     private $user_fb;
     private $user_tw;
