@@ -1,0 +1,1 @@
+<h4>Eliminar Consolas: <?php echo $rolesaccess->getrolaccess_deletconsolas(); ?></h4>

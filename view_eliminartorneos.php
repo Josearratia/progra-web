@@ -1,0 +1,1 @@
+<h4>Eliminar Torneos: <?php echo $rolesaccess->getrolaccess_delettorneo(); ?></h4>

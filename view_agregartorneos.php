@@ -1,0 +1,1 @@
+<h4>Agregar Torneos: <?php echo $rolesaccess->getrolaccess_addtorneo(); ?></h4>

@@ -1,0 +1,1 @@
+<h4>Modificar Promociones: <?php echo $rolesaccess->getrolaccess_modificarpromociones(); ?></h4>

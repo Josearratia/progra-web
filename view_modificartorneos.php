@@ -1,0 +1,1 @@
+<h4>Modificar Torneos: <?php echo $rolesaccess->getrolaccess_modificartorneo(); ?></h4>

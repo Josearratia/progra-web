@@ -1,0 +1,1 @@
+<h4>Consolas Juegos: <?php echo $rolesaccess->getrolaccess_addjuegos(); ?></h4>

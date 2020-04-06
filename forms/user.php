@@ -187,6 +187,8 @@ class login extends DB
         }
     }
 
+
+
     public function updatesocial($facebook, $instagram, $twitch, $youtube, $twitter, $id)
     {
         $exist = $this->connect()->prepare('SELECT * FROM `usuarios` WHERE idUsuario = :id');
@@ -205,8 +207,41 @@ class login extends DB
                 'instagram' => $instagram, 'userid' => $id
             ]);
             return "Datos Guardados";
-        }else {
+        } else {
             return "A Ocurrido un error";
+        }
+    }
+
+    public function allusers()
+    {
+        $rawdata = array();
+        $query = $this->connect()->prepare('SELECT * FROM usuarios');
+        $query->execute();
+
+        return $query;
+    }
+
+    public function eliminar($id)
+    {
+        $resultado = $this->findreferido($id);
+        if ($resultado->rowCount()) {
+            $query = $this->connect()->prepare('UPDATE `usuarios` SET Borrado = :borrado WHERE Codigo_usuario = :userid');
+            $query->execute(['borrado' => 1, 'userid' => $id]);
+            echo "Borrado";
+        }else{
+            echo "errorbd";
+        }
+    }
+
+    public function activar($id)
+    {
+        $resultado = $this->findreferido($id);
+        if ($resultado->rowCount()) {
+            $query = $this->connect()->prepare('UPDATE `usuarios` SET Borrado = :borrado WHERE Codigo_usuario = :userid');
+            $query->execute(['borrado' => 0, 'userid' => $id]);
+            echo "Activado";
+        }else{
+            echo "errorbd";
         }
     }
 
