@@ -1,1 +1,5 @@
-<h4>Eliminar Roles: <?php echo $rolesaccess->getrolaccess_deletroles(); ?></h4>
+<h4>Eliminar Roles:  
+    <a href="">
+        <input type="button" class="btn btn-danger" value="Eliminar">
+    </a>
+</h4>

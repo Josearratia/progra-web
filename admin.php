@@ -31,7 +31,7 @@ include_once 'forms/imgp.php';
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Mi perfil</title>
+    <title>Administración</title>
     <meta content="" name="descriptison">
     <meta content="Gaming Center" name="keywords">
 
@@ -76,6 +76,7 @@ include_once 'forms/imgp.php';
                     <li class="active"><a href="dashboard.php">Inicio</a></li>
                     <li class="active"><a href="Miperfil.php">Mi perfil</a></li>
                     <li class="nav-logo"><a href="index.php"><img src="assets/img/xbox-control-menu.png" alt="" class="img-fluid"></a></li>
+                    <li class="active"><a href="referidos.php">Referidos</a></li>
                     <li class="active"><a href="/forms/logout.php">Cerrar Sesión</a></li>
 
                 </ul>

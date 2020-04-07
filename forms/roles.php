@@ -73,6 +73,41 @@ class roles extends DB
     }
 
 
+    public function addrol($nombre,
+    $descripcion,
+    $eliusuarios,
+    $modipromo,
+    $addroles,
+    $modiroles,
+    $eliroles,
+    $asingroles,
+    $addconsolas,
+    $modiconsolas,
+    $eliconsolas,
+    $addjuegos,
+    $modijuegos,
+    $elijuegos,
+    $adddulceria,
+    $modidulceria,
+    $elidulceria,
+    $addtorneo,
+    $moditorneos,
+    $elitorneos
+    ){
+        $rol = $this->connect()->prepare('INSERT INTO `roles`(`idRoles`, `Nombre_Rol`, `Descripcion_Rol`, `Agregar_roles`, `Asignar_roles`, `Eliminar_roles`, `Modificar_roles`, `Agregar_consolas`, `Modificar_consolas`, `Eliminar_consolas`, `Agregar_juegos`, `Modificar_juegos`, `Eliminar_juego`, `Agregar_dulceria`, `Modificar_dulceria`, `Eliminar_dulceria`, `Agregar_torneo`, `Modificar_torneo`, `Eliminar_torneo`, `Eliminar_usuario`, `Modificar_promociones`, `Agregar_promociones`, `Eliminar_promocion`)
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
+
+        $rol->execute([NULL, $nombre,$descripcion,$addroles,$asingroles,$eliroles,$modiroles
+        ,$addconsolas,$modiconsolas,$eliconsolas,$addjuegos,$modijuegos,$elijuegos,$adddulceria,$modidulceria,$elidulceria,
+        $addtorneo,$moditorneos,$elitorneos,$eliusuarios,$modipromo,0,0]);
+
+        echo "Datos Guardados";
+    }
+
+
+
+
+
     public function getnombre()
     { // Nombre del rol que tiene el usuario
         return $this->Nombre_Rol;
