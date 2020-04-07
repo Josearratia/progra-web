@@ -2,11 +2,13 @@
 
 include_once 'forms/user.php';
 include_once 'forms/roles.php';
+include_once 'forms/promociones.php';
 include_once 'forms/Session.php';
 
 $userSession = new UserSession();
 $user = new login();
 $rolesaccess = new roles;
+$promo = new promociones();
 
 if (isset($_SESSION['user'])) {
     $user->setUserAndfk($userSession->getCurrentUser());

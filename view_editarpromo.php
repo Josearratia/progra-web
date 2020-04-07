@@ -1,26 +1,3 @@
-<?php
-
-include_once 'forms/user.php';
-include_once 'forms/referidos.php';
-include_once 'forms/Session.php';
-
-$userSession = new UserSession();
-$user = new login();
-$referidos = new referidos();
-
-if (isset($_SESSION['user'])) {
-    $user->setUserAndfk($userSession->getCurrentUser());
-
-    if ($user->getborrado() === 1) {
-        include_once 'info.php';
-        return;
-    }
-} else {
-    include_once 'index.php';
-}
-include_once 'forms/imgp.php';
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -28,9 +5,9 @@ include_once 'forms/imgp.php';
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Dashboard</title>
+    <title>Gaming Center</title>
     <meta content="" name="descriptison">
-    <meta content="Gaming Center" name="keywords">
+    <meta content="" name="keywords">
 
     <!-- Favicons -->
     <link href="assets/img/favicon.png" rel="icon">
@@ -51,10 +28,9 @@ include_once 'forms/imgp.php';
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/animation.css" rel="stylesheet">
 
-
 </head>
 
-<body>
+<body id="main">
     <!-- ======= Header ======= -->
     <header id="mainheader" class="d-flex align-items-center">
         <div class="container">
@@ -67,13 +43,13 @@ include_once 'forms/imgp.php';
 
             <nav class="nav-menu d-none d-lg-block">
                 <ul class="nav-inner">
-                    <!-- <li class="active"><a href="dashboard.php">Inicio</a></li> -->
+                    <li class="active"><a href="dashboard.php">Inicio</a></li>
                     <li class="active"><a href="Miperfil.php">Mi perfil</a></li>
                     <?php if ($user->getrol() != 2) {
                         echo '<li class="active"><a href="admin.php">Administracion</a></li>';
                     } ?>
                     <li class="nav-logo"><a href="index.php"><img src="assets/img/xbox-control-menu.png" alt="" class="img-fluid"></a></li>
-                    <!-- <li class="active"><a href="referidos.php">Referidos</a></li> -->
+                    <li class="active"><a href="referidos.php">Referidos</a></li>
                     <li class="active"><a href="/forms/logout.php">Cerrar Sesión</a></li>
 
                 </ul>
@@ -85,77 +61,61 @@ include_once 'forms/imgp.php';
         </div>
     </header>
 
-    <!-- endheader -->
 
-    <div class="row justify-content-center h-100">
-        <div class="col-lg-8 mt-5 mt-lg-0">
-            <div class="col-sm-12 align-self-center text-center">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <h1 class="m-5">Bienvenido <?php echo $user->getnickname(); ?></h1>
+    <!-- ======= Contact Section ======= -->
+    <section id="" class="promotion section-bg">
+        <div class="containe ">
 
-                    </div>
-                </div>
+            <div class="section-title">
+                <h2>Editar Promocion</h2>
             </div>
-        </div>
-    </div>
+            <div class="row justify-content-center h-100">
+                <div class="col-lg-8 mt-5 mt-lg-0">
+                    <form action="guardarPromocion.php" method="post" role="form" class="promociones-form" data-aos="fade-down-left">
 
-
-
-    <div class="row justify-content-center h-100">
-        <div class="col-lg-8 mt-5 mt-lg-0">
-            <div class="col-sm-12 align-self-center text-center">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <h1>Referidos</h1>
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Codigo De Referido</th> <!-- Borrado -->
-                                        <th scope="col">Apodo Del Referido</th> <!-- Codigo_usuario -->
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    $data = array();
-                                    $referidos->setreferidos($user->getuserid());
-                                    $data = $referidos->get();                                   
-                                    $i = 0;
-
-                                    for($i = 0; $i < sizeof($data); $i++){
-                                        echo "<tr>";
-                                        echo '<th scope="row">' . ($i+1) . '</th>';
-                                        
-                                        echo '<td>' . $data[$i]['Codigo_usuario'] . '</td>'; 
-                                        echo '<td>' . $data[$i]['nickname_usuario'] . '</td>';
-                                        echo '</tr>';
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
+                        <div class="form-row justify-content-center">
+                            <div class="col-md-6 form-group">
+                                <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>" />
+                                <input type="text" name="descripcion" class="form-control" id="descripcion" value="<?php echo $promo->getdes();?>" placeholder="Descripcion" data-rule="required" data-msg="Por favor introduzca un descripcion para la promocion" />
+                                <div class="validate"></div>
+                            </div>
                         </div>
-                    </div>
+
+                        <div class="form-row justify-content-center">
+                            <div class="col-md-6 form-group">
+                                <input type="number" step="0.01" min="0" max="100" name="monedas" class="form-control" id="monedas" value="<?php echo $promo->getmonedas();?>" placeholder="Monedas" data-rule="minlen:1" data-msg="Por favor introduzca la cantidad de monedas" />
+                                <div class="validate"></div>
+                            </div>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <div class="loading">Loading</div>
+                            <div class="okey-message"></div>
+                            <div class="error-message"></div>
+                        </div>
+                        <div class="text-center"><button type="submit">Guardar</button></div>
+                    </form>
                 </div>
             </div>
         </div>
-    </div>
-
+    </section><!-- End Contact Section -->
 
 
     <!-- Vendor JS Files -->
     <script src="assets/vendor/jquery/jquery.min.js"></script>
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/vendor/php-email-form/promociones-form.js"></script>
     <script src="assets/vendor/jquery-sticky/jquery.sticky.js"></script>
     <script src="assets/vendor/venobox/venobox.min.js"></script>
     <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
     <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
     <script src="assets/vendor/aos/aos.js"></script>
+
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
+
 </body>
 
 </html>
