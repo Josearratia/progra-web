@@ -25,7 +25,7 @@ include_once 'forms/imgp.php';
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Gaming Center</title>
+    <title>Roles</title>
     <meta content="" name="descriptison">
     <meta content="" name="keywords">
 

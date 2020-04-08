@@ -72,6 +72,14 @@ class roles extends DB
         }
     }
 
+    public function allroles()
+    {
+        $query = $this->connect()->prepare('SELECT * FROM roles');
+        $query->execute();
+
+        return $query;
+    }
+
 
     public function addrol($nombre,
     $descripcion,
@@ -102,6 +110,12 @@ class roles extends DB
         $addtorneo,$moditorneos,$elitorneos,$eliusuarios,$modipromo,0,0]);
 
         echo "Datos Guardados";
+    }
+
+    public function eliminar($id){
+        $query = $this->connect()->prepare('DELETE FROM `roles` WHERE idRoles = :id ');
+        $query->execute(['id' => $id]);
+        echo "dls";
     }
 
 

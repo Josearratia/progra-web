@@ -188,7 +188,7 @@ class login extends DB
             $this->user_yt = $currentUser['YT_usuairo'];
             $this->user_in = $currentUser['IG_usuario'];
         }
-    }   
+    }
 
     public function updateCOINS($id)
     {
@@ -201,7 +201,7 @@ class login extends DB
         foreach ($coins as $currentUser) {
             $addcoins = $currentUser['Monedas'];
         }
-        
+
 
         $usuario = $this->connect()->prepare('SELECT * FROM `usuarios` WHERE idUsuario = :id');
         $usuario->execute(['id' => $id]);
@@ -210,7 +210,7 @@ class login extends DB
 
             foreach ($usuario as $currentUser) {
                 $usercoins = $currentUser['Monedas_usuario'];
-             }
+            }
 
 
             $agregar = $usercoins + $addcoins;
@@ -221,9 +221,7 @@ class login extends DB
                 'monedas' => $agregar,
                 'userid' => $id
             ]);
-
-            
-        } 
+        }
     }
 
 
@@ -267,7 +265,7 @@ class login extends DB
             $query = $this->connect()->prepare('UPDATE `usuarios` SET Borrado = :borrado WHERE Codigo_usuario = :userid');
             $query->execute(['borrado' => 1, 'userid' => $id]);
             echo "Borrado";
-        }else{
+        } else {
             echo "errorbd";
         }
     }
@@ -279,7 +277,7 @@ class login extends DB
             $query = $this->connect()->prepare('UPDATE `usuarios` SET Borrado = :borrado WHERE Codigo_usuario = :userid');
             $query->execute(['borrado' => 0, 'userid' => $id]);
             echo "Activado";
-        }else{
+        } else {
             echo "errorbd";
         }
     }
@@ -289,6 +287,30 @@ class login extends DB
 
         $query = $this->connect()->prepare('UPDATE `usuarios` SET NombreFotoPF_usuario = :imgname WHERE idUsuario = :userid');
         $query->execute(['imgname' => $imgname, 'userid' => $id]);
+    }
+
+    public function updaterol($id, $rol)
+    {
+        $query = $this->connect()->prepare('UPDATE `usuarios` SET Rol_usuario = :rol WHERE Codigo_usuario = :userid');
+        $query->execute(['rol' => $rol, 'userid' => $id]);
+        echo "Datos Guardados";
+    }
+
+    public function roleliminado($rol)
+    {
+
+        $query = $this->connect()->prepare('SELECT * FROM `usuarios` WHERE Rol_usuario = :rol');
+        $query->execute(['rol' => $rol]);
+
+        if ($query->rowCount() > 0) {
+            while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                $query = $this->connect()->prepare('UPDATE `usuarios` SET Rol_usuario = :rol WHERE idUsuario = :userid');
+                $query->execute(['rol' => 2, 'userid' => $row['idUsuario']]);
+            }
+            return "OKEY";
+        }else{
+            return "OKEY";
+        }
     }
 
 
