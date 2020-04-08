@@ -72,6 +72,39 @@ class roles extends DB
         }
     }
 
+    public function setrol($id)
+    {
+        $nameuser = $this->connect()->prepare('SELECT * from roles WHERE idRoles = :id');
+        $nameuser->execute(['id' => $id]);
+
+
+        foreach ($nameuser as $currentUser) {
+            $this->idRolesPrimaria = $currentUser['idRoles'];	
+            $this->Nombre_Rol = $currentUser['Nombre_Rol'];	
+            $this->Descripcion_Rol = $currentUser['Descripcion_Rol'];	
+            $this->Agregar_roles = $currentUser['Agregar_roles']; 
+            $this->Asignar_roles = $currentUser['Asignar_roles'];	
+            $this->Eliminar_roles = $currentUser['Eliminar_roles'];
+            $this->Modificar_roles = $currentUser['Modificar_roles']; 
+            $this->Agregar_consolas = $currentUser['Agregar_consolas'];	
+            $this->Modificar_consolas = $currentUser['Modificar_consolas'];	
+            $this->Eliminar_consolas = $currentUser['Eliminar_consolas'];		
+            $this->Agregar_juegos = $currentUser['Agregar_juegos'];	
+            $this->Modificar_juegos = $currentUser['Modificar_juegos'];		
+            $this->Eliminar_juego = $currentUser['Eliminar_juego'];		
+            $this->Agregar_dulceria = $currentUser['Agregar_dulceria'];		
+            $this->Modificar_dulceria = $currentUser['Modificar_dulceria'];	
+            $this->Eliminar_dulceria = $currentUser['Eliminar_dulceria'] ;		
+            $this->Agregar_torneo = $currentUser['Agregar_torneo'];		
+            $this->Modificar_torneo = $currentUser['Modificar_torneo'];	
+            $this->Eliminar_torneo = $currentUser['Eliminar_torneo']; 		
+            $this->Eliminar_usuario = $currentUser['Eliminar_usuario'];		
+            $this->Modificar_promociones = $currentUser['Modificar_promociones'];		
+            $this->Agregar_promociones = $currentUser['Agregar_promociones'];	
+            $this->Eliminar_promocion = $currentUser['Eliminar_promocion'];
+        }
+    }
+
     public function allroles()
     {
         $query = $this->connect()->prepare('SELECT * FROM roles');
@@ -240,5 +273,3 @@ class roles extends DB
         return $this->Modificar_promociones;
     }
 }
-    
-		

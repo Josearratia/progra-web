@@ -1,7 +1,7 @@
 <?php
-include_once 'forms/user.php';
-include_once 'forms/promociones.php';
-include_once 'forms/Session.php';
+include_once '../forms/user.php';
+include_once '../forms/promociones.php';
+include_once '../forms/Session.php';
 
 
 $userSession = new UserSession();
@@ -14,7 +14,7 @@ if(isset($_SESSION['user'])){
 
         echo $promo->update($_POST['id'],$_POST['descripcion'],$_POST['monedas']);
        
-   }else {
-       include_once 'view_registro.php';
    }
-}
+}else{
+       include_once '../login.php';
+   }

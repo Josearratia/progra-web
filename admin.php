@@ -105,33 +105,33 @@ include_once 'forms/imgp.php';
     </div>
 
     <?php if ($rolesaccess->getrolaccess_eliminarusuarios() == 1) {
-        include_once 'view_usuarios.php';
+        include_once 'usuarios/view_usuarios.php';
     } ?>
 
     <?php if ($rolesaccess->getrolaccess_addroles() == 1 || $rolesaccess->getrolaccess_asignarroles() == 1 || $rolesaccess->getrolaccess_deletroles() == 1 ||  $rolesaccess->getrolaccess_modificarroles() == 1) {
-        include_once 'view_roles.php';
+        include_once 'roles/view_roles.php';
     } ?>
 
 
     <?php if ($rolesaccess->getrolaccess_addconsolas() == 1 || $rolesaccess->getrolaccess_Modificarconsolas() == 1 || $rolesaccess->getrolaccess_deletconsolas() == 1) {
-        include_once 'view_consolas.php';
+        include_once 'consolas/view_consolas.php';
     } ?>
 
     <?php if ($rolesaccess->getrolaccess_addjuegos() == 1 || $rolesaccess->getrolaccess_modificarjuegos() == 1 || $rolesaccess->getrolaccess_deletjuegos() == 1) {
-        include_once 'view_juegos.php';
+        include_once 'juegos/view_juegos.php';
     } ?>
 
     <?php if ($rolesaccess->getrolaccess_addtorneo() == 1 || $rolesaccess->getrolaccess_modificartorneo() == 1 || $rolesaccess->getrolaccess_delettorneo() == 1) {
-        include_once 'view_torneos.php';
+        include_once 'torneos/view_torneos.php';
     } ?>
 
     <?php if ($rolesaccess->getrolaccess_adddulceria() == 1 || $rolesaccess->getrolaccess_modificardulceria() == 1 || $rolesaccess->getrolaccess_deletdulceria() == 1) {
-        include_once 'view_dulceria.php';
+        include_once 'dulceria/view_dulceria.php';
     } ?>
 
 
     <?php if ($rolesaccess->getrolaccess_modificarpromociones() == 1) {
-        include_once 'view_promociones.php';
+        include_once 'promociones/view_promociones.php';
     } ?>
 
     <!-- Vendor JS Files -->
