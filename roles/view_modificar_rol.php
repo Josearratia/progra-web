@@ -89,10 +89,11 @@ include_once '../forms/imgp.php';
             </div>
             <div class="row justify-content-center h-100">
                 <div class="col-lg-8 mt-5 mt-lg-0">
-                    <form action="../forms/addrol.php" method="post" role="form" class="promociones-form" data-aos="fade-down-left">
+                    <form action="../forms/modificarrol.php" method="post" role="form" class="promociones-form" data-aos="fade-down-left">
 
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group">
+                                <input type="hidden" name="id" value="<?php echo $rol->getid(); ?>"/>
                                 <input type="text" name="nombre" class="form-control" id="nombre" value="<?php echo $rol->getnombre(); ?>" placeholder="Nombre" data-rule="required" data-msg="Por favor introduzca un nombre para el rol" />
                                 <div class="validate"></div>
                             </div>

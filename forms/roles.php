@@ -114,6 +114,79 @@ class roles extends DB
     }
 
 
+    public function update($nombre,
+    $descripcion,
+    $eliusuarios,
+    $modipromo,
+    $addroles,
+    $modiroles,
+    $eliroles,
+    $asingroles,
+    $addconsolas,
+    $modiconsolas,
+    $eliconsolas,
+    $addjuegos,
+    $modijuegos,
+    $elijuegos,
+    $adddulceria,
+    $modidulceria,
+    $elidulceria,
+    $addtorneo,
+    $moditorneos,
+    $elitorneos,
+    $id){
+        
+        $rol = $this->connect()->prepare('UPDATE `roles` SET `Nombre_Rol`=:nombre,
+        `Descripcion_Rol`=:descrip,
+        `Agregar_roles`=:addroles,
+        `Asignar_roles`=:asingroles,
+        `Eliminar_roles`=:eliroles,
+        `Modificar_roles`=:modiroles,
+        `Agregar_consolas`=:addconsolas,
+        `Modificar_consolas`=:modificonsolas,
+        `Eliminar_consolas`=:eliconsolas,
+        `Agregar_juegos`=:addjuego,
+        `Modificar_juegos`=:modijuego,
+        `Eliminar_juego`=:elijuego,
+        `Agregar_dulceria`=:adddulceria,
+        `Modificar_dulceria`=:modidulceria,
+        `Eliminar_dulceria`=:elidulceria,
+        `Agregar_torneo`=:addtorneo,
+        `Modificar_torneo`=:moditorneo,
+        `Eliminar_torneo`=:elitorneo,
+        `Eliminar_usuario`=:eliusuario,
+        `Modificar_promociones`=:modipromo,
+        `Agregar_promociones`=:addpromo,
+        `Eliminar_promocion`=:elipromo
+        WHERE idRoles=:id');
+
+        $rol->execute(['nombre'=>$nombre,
+        'descrip'=>$descripcion,
+        'addroles'=>$addroles,
+        'asingroles'=>$asingroles,
+        'eliroles'=>$eliroles,
+        'modiroles'=>$modiroles,
+        'addconsolas'=>$addconsolas,
+        'modificonsolas'=>$modiconsolas,
+        'eliconsolas'=>$eliconsolas,
+        'addjuego'=>$addjuegos,
+        'modijuego'=>$modijuegos,
+        'elijuego'=>$elijuegos,
+        'adddulceria'=>$adddulceria,
+        'modidulceria'=>$modidulceria,
+        'elidulceria'=>$elidulceria,
+        'addtorneo'=>$addtorneo,
+        'moditorneo'=>$moditorneos,
+        'elitorneo'=>$elitorneos,
+        'eliusuario'=>$eliusuarios,
+        'modipromo'=>$modipromo,
+        'addpromo'=>0,
+        'elipromo'=>0,
+        'id'=> $id]);
+        echo "Datos Guardados";
+    }
+
+
     public function addrol($nombre,
     $descripcion,
     $eliusuarios,
@@ -154,6 +227,10 @@ class roles extends DB
 
 
 
+    public function getid()
+    { // Nombre del rol que tiene el usuario
+        return $this->idRolesPrimaria;
+    }
 
     public function getnombre()
     { // Nombre del rol que tiene el usuario
