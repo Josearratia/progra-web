@@ -18,6 +18,8 @@ jQuery(document).ready(function($) {
                     setTimeout(function() { location.href = "eliminarrol.php" }, 1000);
                 } else if (msg == "consolaac") {
                     setTimeout(function() { location.href = "eliminar.php" }, 1000);
+                } else if (msg == "juegoac") {
+                    setTimeout(function() { location.href = "eliminar.php" }, 1000);
                 }
             }
         });

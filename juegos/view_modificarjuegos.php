@@ -1,1 +1,1 @@
-<h4>Eliminar Juegos: <?php echo $rolesaccess->getrolaccess_modificarjuegos(); ?></h4>
+<h4>Modificar Juegos: <?php echo $rolesaccess->getrolaccess_modificarjuegos(); ?></h4>
