@@ -20,6 +20,8 @@ jQuery(document).ready(function($) {
                     setTimeout(function() { location.href = "eliminar.php" }, 1000);
                 } else if (msg == "juegoac") {
                     setTimeout(function() { location.href = "eliminar.php" }, 1000);
+                } else if (msg == "torneoac") {
+                    setTimeout(function() { location.href = "eliminar.php" }, 1000);
                 }
             }
         });

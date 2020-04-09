@@ -67,7 +67,7 @@ include_once 'forms/imgp.php';
 
             <nav class="nav-menu d-none d-lg-block">
                 <ul class="nav-inner">
-                    <!-- <li class="active"><a href="dashboard.php">Inicio</a></li> -->
+                   <li class="active"><a href="dashboard.php">Inicio</a></li> 
                     <li class="active"><a href="Miperfil.php">Mi perfil</a></li>
                     <?php if ($user->getrol() != 2) {
                         echo '<li class="active"><a href="admin.php">Administracion</a></li>';

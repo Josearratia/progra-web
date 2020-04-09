@@ -1,1 +1,5 @@
-<h4>Agregar Dulceria: <?php echo $rolesaccess->getrolaccess_adddulceria(); ?></h4>
+<h4>Agregar Dulceria: 
+<a href="dulceria/agregar.php">
+        <input type="button" class="btn btn-primary" value="Agregar">
+    </a>
+</h4>

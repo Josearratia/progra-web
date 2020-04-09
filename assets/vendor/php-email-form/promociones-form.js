@@ -72,6 +72,10 @@ jQuery(document).ready(function($) {
                     this_form.find('.loading').slideUp();
                     this_form.find('.okey-message').slideDown().html(msg);
                     setTimeout(function() { location.href = "../admin.php" }, 1000);
+                } else if (msg == "Datos Guardados De Relacion") {
+                    this_form.find('.loading').slideUp();
+                    this_form.find('.okey-message').slideDown().html(msg);
+                    setTimeout(function() { location.href = "agregar.php" }, 1000);
                 } else {
                     this_form.find('.loading').slideUp();
                     this_form.find('.error-message').slideDown().html(msg);

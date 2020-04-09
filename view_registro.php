@@ -146,7 +146,7 @@
                         </div>
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group">
-                                <input type="tel" class="form-control" name="Telefono" id="Telefono_usuario" placeholder="Telefono ej. 8341005001" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" required />
+                                <input type="tel" class="form-control" name="Telefono" id="Telefono_usuario" placeholder="Telefono ej. 8341005001" pattern="[0-9]{3}[0-9]{3}[0-9]{4}"/>
                             </div>
 
                         </div>
