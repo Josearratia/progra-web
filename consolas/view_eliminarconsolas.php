@@ -1,1 +1,5 @@
-<h4>Eliminar Consolas: <?php echo $rolesaccess->getrolaccess_deletconsolas(); ?></h4>
+<h4>Eliminar Consolas:
+    <a href="consolas/eliminar.php">
+        <input type="button" class="btn btn-danger" value="Eliminar">
+    </a>
+</h4>

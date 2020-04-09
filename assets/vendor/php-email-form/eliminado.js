@@ -16,8 +16,8 @@ jQuery(document).ready(function($) {
             success: function(msg) {
                 if (msg == "dls") {
                     setTimeout(function() { location.href = "eliminarrol.php" }, 1000);
-                } else {
-                    console.log(msg);
+                } else if (msg == "consolaac") {
+                    setTimeout(function() { location.href = "eliminar.php" }, 1000);
                 }
             }
         });

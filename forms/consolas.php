@@ -25,6 +25,24 @@ class consolas extends DB
         echo "Datos Guardados";
     }
 
+    public function eliminar($id){
+        $consolael = $this->connect()->prepare('UPDATE `consolas` SET borrado = :borrado  WHERE idConsola = :id');
+        $consolael->execute([
+            'borrado' => '1',
+            'id' => $id
+        ]);
+        echo "consolaac";
+    }
+
+    public function activar($id){
+        $consolaac = $this->connect()->prepare('UPDATE `consolas` SET `borrado`= :borrado  WHERE idConsola = :id');
+        $consolaac->execute([
+            'borrado' => '0',
+            'id' => $id
+        ]);
+        echo "consolaac";
+    }
+
     public function setconsolas($id)
     {
         $consola = $this->connect()->prepare('SELECT * from consolas WHERE idConsola = :id');
