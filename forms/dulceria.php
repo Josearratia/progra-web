@@ -45,7 +45,7 @@ class dulceria extends DB
         $consola->execute([
             'id' => $id
         ]);
-        echo "Datos Guardados";
+        echo "dulceriaac";
     }
 
 

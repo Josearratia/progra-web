@@ -1,3 +1,23 @@
+<?php
+
+include_once 'forms/user.php';
+include_once 'forms/Session.php';
+
+$userSession = new UserSession();
+$user = new login();
+
+if (isset($_SESSION['user'])) {
+    $user->setUserAndfk($userSession->getCurrentUser());
+    if ($user->getborrado() === 0) {
+        header("location: ../dashboard.php");
+        return;
+    }
+} else {
+    header("location: ../index.php");
+}
+include_once 'forms/imgp.php';
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
