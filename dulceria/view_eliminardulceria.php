@@ -1,1 +1,5 @@
-<h4>Eliminar Dulceria: <?php echo $rolesaccess->getrolaccess_deletdulceria(); ?></h4>
+<h4>Eliminar Dulceria:
+    <a href="dulceria/eliminar.php">
+        <input type="button" class="btn btn-danger" value="Eliminar">
+    </a>
+</h4>

@@ -34,7 +34,7 @@ class dulceria extends DB
         $dulce->execute([
             'nombre' => $nombre,
             'costo' => $costo,
-            'cantdad' => $cantidad,
+            'cantidad' => $cantidad,
             'id' => $id
         ]);
         echo "Datos Guardados";

@@ -19,7 +19,7 @@ class torneos extends DB
 
     public function set($id)
     {
-        $torneo = $this->connect()->prepare('SELECT * from torneos WHERE idConsola = :id');
+        $torneo = $this->connect()->prepare('SELECT * from torneos WHERE idTorneos = :id');
         $torneo->execute(['id' => $id]);
 
         foreach ($torneo as $currentUser) {
@@ -38,13 +38,13 @@ class torneos extends DB
         }
     }
 
-    public function update($id, $nombre, $descripcion, $juego, $fecha, $hora, $modalidad, $forma, $cantidad, $premios, $estatus, $borrado)
+    public function update($id, $nombre, $descripcion, $juego, $fecha, $hora, $modalidad, $forma, $cantidad, $premios, $estatus)
     {
         $torneo = $this->connect()->prepare('UPDATE `torneos` SET `Nombre_torneo`= :nombre,
         `Descripcion_torneo`=:descripcion,`Juego_torneo`=:juego,`Fecha_torneo`=:fecha,`Hora_torneo`=:hora,
         `Modalidad_torneo`=:modalidad,`Forma_torneo`=:forma,`Cantidad_Max_Jugadores_torneo`=:cantidadmax,
         `Premios_torneo`=:premios,`Estatus_torneo`=:estatus,`borrado`=:borrado 
-        WHERE idConsola = :id');
+        WHERE idTorneos = :id');
         $torneo->execute([
             'nombre' => $nombre,
             'descripcion' => $descripcion,
@@ -56,7 +56,7 @@ class torneos extends DB
             'cantidadmax' => $cantidad,
             'premios' =>  $premios,
             'estatus' => $estatus,
-            'borrado' => $borrado,
+            'borrado' => 0,
             'id' => $id
         ]);
         echo "Datos Guardados";

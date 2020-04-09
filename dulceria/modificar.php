@@ -2,10 +2,11 @@
 
 include_once '../forms/user.php';
 include_once '../forms/Session.php';
-/* include_once '../forms/dulceria.php'; */
+include_once '../forms/dulceria.php';
 
 $userSession = new UserSession();
 $user = new login();
+$dulceria = new dulceria;
 
 if (isset($_SESSION['user'])) {
     $user->setUserAndfk($userSession->getCurrentUser());
@@ -88,40 +89,47 @@ include_once '../forms/imgp.php';
         <div class="containe ">
 
             <div class="section-title">
-                <h2>Agregar Producto</h2>
+                <h2>Modificar Producto</h2>
             </div>
             <div class="row justify-content-center h-100">
                 <div class="col-lg-8 mt-5 mt-lg-0">
-                    <form action="../forms/adddulceria.php" method="post" role="form" class="promociones-form" data-aos="fade-down-left">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Accion</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Cantidad</th>
+                                <th scope="col">Costo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                            $consulta = $dulceria->getall();
+                            $i = 0;
+                            if ($consulta->rowCount() > 0) {
+                                while ($row = $consulta->fetch(PDO::FETCH_ASSOC)) {
+                                    $i += 1;
+                                    echo "<tr>";
+                                    echo '<th scope="row">' . $i . '</th>';
 
-                        <div class="form-row justify-content-center">
-                            <div class="col-md-6 form-group">
-                                <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Nombre" data-rule="required" data-msg="Por favor introduzca un nombre para la consola" />
-                                <div class="validate"></div>
-                            </div>
-                        </div>
 
-                        <div class="form-row justify-content-center">
-                            <div class="col-md-6 form-group">
-                                <input type="text" name="Costo" class="form-control" id="descripcion" placeholder="Costo" data-rule="required" data-msg="Por favor introduzca un descripcion para la consola" />
-                                <div class="validate"></div>
-                            </div>
-                        </div>
+                                    echo '<td>
+                                                <form action="../dulceria/modificar_con.php" method="post" role="form" id="modificar">
+                                                <input name="id" type="hidden" value="' . $row['id_producto'] . '">
+                                                <input type="submit" class="btn btn-primary" value="Modificar">
+                                                </form>
+                                                </td>';
 
-                        <div class="form-row justify-content-center">
-                            <div class="col-md-6 form-group">
-                                <input type="text" name="Cantidad" class="form-control" id="numero" placeholder="Cantidad" data-rule="required" data-msg="Por favor introduzca un numero de consola" />
-                                <div class="validate"></div>
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <div class="loading">Loading</div>
-                            <div class="okey-message"></div>
-                            <div class="error-message"></div>
-                        </div>
-                        <div class="text-center"><button type="submit">Guardar</button></div>
-                    </form>
+                                    echo '<td>' . $row['Nombre_producto'] . '</td>';
+                                    echo '<td>' . $row['cantidad_Stock'] . '</td>';
+                                    echo '<td>' . $row['Costo_producto'] . '</td>';
+                                    echo '</tr>';
+                                }
+                            }
+                            ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

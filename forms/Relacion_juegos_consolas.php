@@ -13,6 +13,12 @@ class relacion extends DB{
         return $relacion;
     }
 
+    public function get($id){
+        $relacion = $this->connect()->prepare('SELECT * FROM `juegos_consolas` INNER JOIN juegos  ON juegos_consolas.Juego = juegos.idJuego INNER JOIN consolas ON juegos_consolas.Consola = consolas.idConsola WHERE  idJuegos_Consolas = :id;');
+        $relacion->execute(['id' => $id]);
+        return $relacion;
+    }
+
     public function add($idjuego, $idconsola){
         $relacion = $this->connect()->prepare('INSERT INTO `juegos_consolas`(`idJuegos_Consolas`, `Juego`, `Consola`) 
         VALUES (?,?,?)');

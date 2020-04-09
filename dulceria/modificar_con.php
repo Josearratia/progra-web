@@ -1,24 +1,38 @@
 <?php
-
 include_once '../forms/user.php';
+include_once '../forms/roles.php';
 include_once '../forms/Session.php';
-/* include_once '../forms/dulceria.php'; */
+include_once '../forms/dulceria.php';
 
 $userSession = new UserSession();
 $user = new login();
+$dulceria = new dulceria;
+$rol = new roles;
 
 if (isset($_SESSION['user'])) {
     $user->setUserAndfk($userSession->getCurrentUser());
+    $rol->setUserrolaccess($user->getuserid());
 
     if ($user->getborrado() === 1) {
-        include_once 'info.php';
+        include_once '../info.php';
         return;
+    }
+    if ($rol->getrolaccess_Modificarconsolas() == 1) {
+        if (isset($_POST['id'])) {
+             $dulceria->set($_POST['id']);
+        } else {
+            include_once '../admin.php';
+        }
+    } else {
+        include_once '../admin.php';
     }
 } else {
     include_once '../index.php';
 }
 include_once '../forms/imgp.php';
 ?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -26,7 +40,7 @@ include_once '../forms/imgp.php';
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Dulceria</title>
+    <title>Roles</title>
     <meta content="" name="descriptison">
     <meta content="" name="keywords">
 
@@ -55,7 +69,6 @@ include_once '../forms/imgp.php';
     <!-- ======= Header ======= -->
     <header id="mainheader" class="d-flex align-items-center">
         <div class="container">
-
             <!-- The main logo is shown in mobile version only. The centered nav-logo in nav menu is displayed in desktop view  -->
             <div class="logo d-block d-lg-none">
                 <a href="../index.php"><img src="../assets/img/logo.png" alt="" class="img-fluid"></a>
@@ -88,29 +101,30 @@ include_once '../forms/imgp.php';
         <div class="containe ">
 
             <div class="section-title">
-                <h2>Agregar Producto</h2>
+                <h2>Modificar Consola</h2>
             </div>
             <div class="row justify-content-center h-100">
                 <div class="col-lg-8 mt-5 mt-lg-0">
-                    <form action="../forms/adddulceria.php" method="post" role="form" class="promociones-form" data-aos="fade-down-left">
+                    <form action="../forms/modificardulceria.php" method="post" role="form" class="promociones-form" data-aos="fade-down-left">
 
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group">
-                                <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Nombre" data-rule="required" data-msg="Por favor introduzca un nombre para la consola" />
+                                <input type="hidden" name="id" value="<?php echo $dulceria->getid(); ?>" />
+                                <input type="text" name="nombre" class="form-control" value="<?php echo $dulceria->getnombre(); ?>" id="nombre" placeholder="Nombre" data-rule="required" data-msg="Por favor introduzca un nombre del producto" />
                                 <div class="validate"></div>
                             </div>
                         </div>
 
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group">
-                                <input type="text" name="Costo" class="form-control" id="descripcion" placeholder="Costo" data-rule="required" data-msg="Por favor introduzca un descripcion para la consola" />
+                                <input type="text" name="Costo" class="form-control" value="<?php echo $dulceria->getcosto(); ?>" id="descripcion" placeholder="Costo" data-rule="required" data-msg="Por favor introduzca un costo de producto" />
                                 <div class="validate"></div>
                             </div>
                         </div>
 
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group">
-                                <input type="text" name="Cantidad" class="form-control" id="numero" placeholder="Cantidad" data-rule="required" data-msg="Por favor introduzca un numero de consola" />
+                                <input type="text" name="Cantidad" class="form-control" value="<?php echo $dulceria->getcatidad() ?>" id="numero" placeholder="Cantidad" data-rule="required" data-msg="Por favor introduzca una cantidad" />
                                 <div class="validate"></div>
                             </div>
                         </div>
