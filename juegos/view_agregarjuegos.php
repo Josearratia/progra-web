@@ -1,1 +1,5 @@
-<h4>Consolas Juegos: <?php echo $rolesaccess->getrolaccess_addjuegos(); ?></h4>
+<h4>Agregar Juegos:
+    <a href="juegos/agregar.php">
+        <input type="button" class="btn btn-primary" value="Agregar">
+    </a>
+</h4>
