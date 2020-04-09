@@ -1,1 +1,5 @@
-<h4>Modificar Juegos: <?php echo $rolesaccess->getrolaccess_modificarjuegos(); ?></h4>
+<h4>Modificar Juegos:
+    <a href="juegos/modificar.php">
+        <input type="button" class="btn btn-primary" value="Modificar">
+    </a>
+</h4>

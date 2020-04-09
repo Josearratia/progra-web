@@ -31,14 +31,13 @@ class juegos extends DB
         echo "Datos Guardados";
     }
 
-    public function update($id,$nombre,$descripcion,$imagen,$borrado){
+    public function update($id,$nombre,$descripcion,$imagen){
         $consola = $this->connect()->prepare('UPDATE `juegos` SET `Nombre_juego` = :nombre, `Descripcion` = :descripcion,
-        `Imagen_juego` = :imagen, `borrado`= :borrado  WHERE idJuego = :id');
+        `Imagen_juego` = :imagen  WHERE idJuego = :id');
         $consola->execute([
             'nombre' => $nombre,
             'descripcion' => $descripcion,
             'imagen' => $imagen,
-            'borrado' => $borrado,
             'id' => $id
         ]);
         echo "Datos Guardados";
