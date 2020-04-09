@@ -2,12 +2,12 @@
 include_once 'user.php';
 include_once 'roles.php';
 include_once 'Session.php';
-include_once 'consolas.php';
+include_once 'torneos.php';
 
 $userSession = new UserSession();
 $user = new login();
 $rolesaccess = new roles;
-$consolas = new consolas;
+$torneo = new torneos;
 
 if (isset($_SESSION['user'])) {
     $user->setUserAndfk($userSession->getCurrentUser());
@@ -20,7 +20,7 @@ if (isset($_SESSION['user'])) {
             $rolesaccess->setUserrolaccess($user->getuserid());
             if ($rolesaccess->getrolaccess_delettorneo() == 1) {
                 if (isset($_POST['id'])) {
-                    $consolas->activar($_POST['id']);
+                    $torneo->activar($_POST['id']);
                 } else {
                     echo "Ingrese bien los datos";
                 }
