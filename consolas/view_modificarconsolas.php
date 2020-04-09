@@ -1,1 +1,5 @@
-<h4>Modificar Consolas: <?php echo $rolesaccess->getrolaccess_Modificarconsolas(); ?></h4>
+<h4>Modificar Consolas: 
+    <a href="consolas/modificar.php">
+        <input type="button" class="btn btn-primary" value="Modificar">
+    </a>
+</h4>

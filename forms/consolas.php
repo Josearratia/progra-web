@@ -22,6 +22,7 @@ class consolas extends DB
             'borrado' => $borrado,
             'id' => $id
         ]);
+        echo "Datos Guardados";
     }
 
     public function setconsolas($id)

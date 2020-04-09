@@ -9,7 +9,7 @@ if (isset($_SESSION['user'])) {
     $user->setUserAndfk($userSession->getCurrentUser());
 
     if ($user->getborrado() === 1) {
-        include_once 'info.php';
+        include_once '../info.php';
         return;
     }
 } else {
