@@ -18,15 +18,16 @@ if (isset($_SESSION['user'])) {
     $user->setUserAndfk($userSession->getCurrentUser());
 
     if ($user->getborrado() === 1) {
-        include_once 'info.php';
+        header("location: ../info.php");
         return;
     }
     if ($rolesaccess->getrolaccess_addtorneo() === 0) {
-        include_once '../admin.php';
+        header("location: ../admin.php");
+        
         return;
     }
 } else {
-    include_once '../index.php';
+    header("location: ../index.php");
 }
 include_once '../forms/imgp.php';
 ?>

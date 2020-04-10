@@ -14,20 +14,20 @@ if (isset($_SESSION['user'])) {
     $rol->setUserrolaccess($user->getuserid());
 
     if ($user->getborrado() === 1) {
-        include_once '../info.php';
+        header("location: ../info.php");
         return;
     }
     if ($rol->getrolaccess_Modificarconsolas() == 1) {
         if (isset($_POST['id'])) {
             $consola->setconsolas($_POST['id']);
         } else {
-            include_once '../admin.php';
+            header("location: ../admin.php");
         }
     } else {
-        include_once '../admin.php';
+        header("location: ../admin.php");
     }
 } else {
-    include_once '../index.php';
+    header("location: ../index.php");
 }
 include_once '../forms/imgp.php';
 ?>

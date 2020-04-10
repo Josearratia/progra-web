@@ -32,7 +32,7 @@ if (isset($_SESSION['user'])) {
         }
     }
 } else {
-    include_once '../index.php';
+    header("location: ../index.php");
 }
     
 ?>

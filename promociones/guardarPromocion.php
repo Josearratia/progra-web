@@ -16,5 +16,5 @@ if(isset($_SESSION['user'])){
        
    }
 }else{
-       include_once '../login.php';
+    header("location: ../index.php");
    }

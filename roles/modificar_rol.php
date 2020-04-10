@@ -41,7 +41,7 @@ if (isset($_SESSION['user'])) {
                 if(isset($_POST['id'])){
                     include_once 'view_modificar_rol.php';
                 }else{
-                    include_once '../admin.php';
+                    header("location: ../admin.php");
                 }
             } else {
                 echo "error 2";
@@ -52,5 +52,5 @@ if (isset($_SESSION['user'])) {
         }
     }
 } else {
-    include_once '../index.php';
+    header("location: ../index.php");
 }

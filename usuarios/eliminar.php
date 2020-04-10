@@ -21,7 +21,6 @@ if (isset($_SESSION['user'])) {
 } else {
     header("location: ../index.php");
 }
-    
 include_once '../forms/imgp.php';
 ?>
 
@@ -32,7 +31,7 @@ include_once '../forms/imgp.php';
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Usuarios</title>
+    <title>Administración</title>
     <meta content="" name="descriptison">
     <meta content="Gaming Center" name="keywords">
 
@@ -209,3 +208,7 @@ include_once '../forms/imgp.php';
     <script src="../assets/vendor/aos/aos.js"></script>
     <!-- Template Main JS File -->
     <script src="../assets/js/main.js"></script>
+
+
+</body>
+</html>
