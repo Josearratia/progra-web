@@ -67,7 +67,7 @@
 
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group">
-                                <input type="text" name="codigo" class="form-control" id="code_invitado" placeholder="Codigo de invitado" />
+                                <input type="text" name="codigo" class="form-control" id="code_invitado" placeholder="Codigo de invitado (No requerido)" />
                                 <div class="validate"></div>
                             </div>
                         </div>
