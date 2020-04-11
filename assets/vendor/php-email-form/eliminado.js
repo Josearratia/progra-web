@@ -24,8 +24,17 @@ jQuery(document).ready(function($) {
                     setTimeout(function() { location.href = "eliminar.php" }, 1000);
                 } else if (msg == "dulceriaac") {
                     setTimeout(function() { location.href = "eliminar.php" }, 1000);
+                } else if (msg == "Participando") {
+                    this_form.find('.loading').slideUp();
+                    this_form.find('.okey-message').slideDown().html(msg);
+                    setTimeout(function() { location.href = "../../dashboard.php" }, 1000);
+                } else if (msg == "Ya te encuentras participando") {
+                    this_form.find('.loading').slideUp();
+                    this_form.find('.error-message').slideDown().html(msg);
                 } else {
-                    /* console.log(msg); */
+                    this_form.find('.loading').slideUp();
+                    this_form.find('.error-message').slideDown().html(msg);
+                    console.log(msg);
                 }
             }
         });

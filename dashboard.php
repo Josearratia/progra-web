@@ -2,9 +2,11 @@
 
 include_once 'forms/user.php';
 include_once 'forms/Session.php';
+include_once 'forms/torneos.php';
 
 $userSession = new UserSession();
 $user = new login();
+$torneo = new torneos;
 
 if (isset($_SESSION['user'])) {
     $user->setUserAndfk($userSession->getCurrentUser());
@@ -67,11 +69,13 @@ include_once 'forms/imgp.php';
                 <ul class="nav-inner">
                     <!-- <li class="active"><a href="dashboard.php">Inicio</a></li> -->
                     <li class="active"><a href="Miperfil.php">Mi perfil</a></li>
-                    <?php if($user->getrol() != 2) { echo '<li class="active"><a href="admin.php">Administracion</a></li>'; } ?>
+                    <?php if ($user->getrol() != 2) {
+                        echo '<li class="active"><a href="admin.php">Administracion</a></li>';
+                    } ?>
                     <li class="nav-logo"><a href="index.php"><img src="assets/img/xbox-control-menu.png" alt="" class="img-fluid"></a></li>
                     <li class="active"><a href="referidos.php">Referidos</a></li>
                     <li class="active"><a href="/forms/logout.php">Cerrar Sesión</a></li>
-                   
+
                 </ul>
             </nav><!-- .nav-menu -->
         </div>
@@ -89,6 +93,40 @@ include_once 'forms/imgp.php';
                 <div class="card shadow">
                     <div class="card-body">
                         <h1 class="m-5">Bienvenido <?php echo $user->getnickname(); ?></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+
+
+    <div class="row justify-content-center h-100">
+        <div class="col-lg-8 mt-5 mt-lg-0">
+            <div class="col-sm-12 align-self-center text-center">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h1 class="m-5">Torneos</h1>
+                        <div class="card-group mx-md-n2">
+
+                            <?php
+                            $consulta = $torneo->getall();
+                            $i = 0;
+                            if ($consulta->rowCount() > 0) {
+                                while ($row = $consulta->fetch(PDO::FETCH_ASSOC)) {
+                                    echo '<div class="col-lg-4 col-md-3 col-sm-6 col-xs-12" style="margin-bottom: 10px;">';
+                                    echo '<div class="card">';
+                                    echo ' <div class="card-body">';
+                                    echo '<h5 class="card-title">' . $row['Nombre_torneo'] . '</h5>';
+                                    echo  '<p class="card-text">' . $row['Descripcion_torneo'] . '</p>';
+                                    echo  '<a href="../torneos/participar/participar.php?id=' .  $row['idTorneos'] . '" class="btn btn-primary">Participar</a>';
+                                    echo '</div>';
+                                    echo '</div>';
+                                    echo '</div>';
+                                }
+                            }
+                            ?>
+                        </div>
                     </div>
                 </div>
             </div>
