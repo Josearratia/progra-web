@@ -119,12 +119,7 @@ include_once '../forms/imgp.php';
                                             echo '<th scope="row">' . $i . '</th>';
 
 
-                                            echo '<td>
-                                                <form action="../forms/eliminardulceria.php" method="post" role="form" id="eliminar">
-                                                <input name="id" type="hidden" value="' . $row['id_producto'] . '">
-                                                <input type="submit" class="btn btn-danger" value="Eliminar">
-                                                </form>
-                                                </td>';
+                                            
 
 
                                             echo '<td>' . $row['Nombre_producto'] . '</td>';

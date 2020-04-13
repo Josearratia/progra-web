@@ -56,7 +56,7 @@ class promociones extends DB
                 'moendas' => $monedas,
                  'id' => $id
             ]);
-            return "Datos Guardados";
+            return "Guardado";
         } else {
             return "A Ocurrido un error";
         }

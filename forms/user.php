@@ -293,7 +293,7 @@ class login extends DB
     {
         $query = $this->connect()->prepare('UPDATE `usuarios` SET Rol_usuario = :rol WHERE Codigo_usuario = :userid');
         $query->execute(['rol' => $rol, 'userid' => $id]);
-        echo "Datos Guardados";
+        echo "Rol Guardado";
     }
 
     public function roleliminado($rol)

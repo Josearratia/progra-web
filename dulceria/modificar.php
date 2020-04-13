@@ -1,18 +1,29 @@
 <?php
 
 include_once '../forms/user.php';
+include_once '../forms/roles.php';
 include_once '../forms/Session.php';
 include_once '../forms/dulceria.php';
 
 $userSession = new UserSession();
 $user = new login();
+$rolesaccess = new roles;
 $dulceria = new dulceria;
 
 if (isset($_SESSION['user'])) {
     $user->setUserAndfk($userSession->getCurrentUser());
-
+    $rolesaccess->setUserrolaccess($user->getuserid());
     if ($user->getborrado() === 1) {
         header("location: ../info.php");
+        return;
+    }
+
+    if (
+        $rolesaccess->getrolaccess_adddulceria() === 0
+        && $rolesaccess->getrolaccess_modificardulceria() == 0
+        && $rolesaccess->getrolaccess_deletdulceria() === 0
+    ) {
+        header("location: ../dashboard.php");
         return;
     }
 } else {
@@ -83,28 +94,57 @@ include_once '../forms/imgp.php';
         </div>
     </header>
 
+    <div class="menuleft">
+        <nav>
+            <ul>
+                <li><a href="../usuarios/eliminar.php">Usuarios</a></li>
+                <li><a href="../roles/modificarrol.php">Roles</a></li>
+                <li><a href="../consolas/modificar.php">Consolas</a></li>
+                <li><a href="../tarifas/modificar.php">Tarifas</a></li>
+                <li><a href="../juegos/modificar.php">Juegos</a></li>
+                <li><a href="../torneos/modificar.php">Torneos</a></li>
+                <li><a href="../dulceria/modificar.php">Dulceria</a></li>
+                <li><a href="../promociones/view_promociones.php">Promociones</a></li>
+            </ul>
+        </nav>
+    </div>
+
+
 
     <!-- ======= Contact Section ======= -->
     <section id="" class="promotion section-bg">
         <div class="containe ">
 
             <div class="section-title">
-                <h2>Modificar Producto</h2>
+                <h2>Dulceria</h2>
+                <?php if ($rolesaccess->getrolaccess_adddulceria() === 1) {
+                    echo '<a href="agregar.php">
+                    <input type="button" class="btn btn-primary" value="Agregar">
+                </a>';
+                }
+                ?>
             </div>
             <div class="row justify-content-center h-100">
+
                 <div class="col-lg-8 mt-5 mt-lg-0">
+
                     <table class="table">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Accion</th>
+
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Cantidad</th>
                                 <th scope="col">Costo</th>
+                                <?php if ($rolesaccess->getrolaccess_modificardulceria() == 1) {
+                                    echo '<th scope="col">Editar</th>';
+                                } ?>
+
+                                <th scope="col">Eliminar</th>
                             </tr>
                         </thead>
                         <tbody>
-                        <?php
+                            <?php
                             $consulta = $dulceria->getall();
                             $i = 0;
                             if ($consulta->rowCount() > 0) {
@@ -114,16 +154,30 @@ include_once '../forms/imgp.php';
                                     echo '<th scope="row">' . $i . '</th>';
 
 
-                                    echo '<td>
-                                                <form action="../dulceria/modificar_con.php" method="post" role="form" id="modificar">
-                                                <input name="id" type="hidden" value="' . $row['id_producto'] . '">
-                                                <input type="submit" class="btn btn-primary" value="Modificar">
-                                                </form>
-                                                </td>';
+
 
                                     echo '<td>' . $row['Nombre_producto'] . '</td>';
                                     echo '<td>' . $row['cantidad_Stock'] . '</td>';
                                     echo '<td>' . $row['Costo_producto'] . '</td>';
+                                    if ($rolesaccess->getrolaccess_modificardulceria() == 1) {
+                                        echo '<td>
+                                        <form action="../dulceria/modificar_con.php" method="post" role="form" id="modificar">
+                                        <input name="id" type="hidden" value="' . $row['id_producto'] . '">
+                                        <input type="submit" class="btn btn-primary" value="Modificar">
+                                        </form>
+                                        </td>';
+                                    }
+
+
+                                    if ($rolesaccess->getrolaccess_deletdulceria() == 1) {
+
+                                        echo '<td>
+                                    <form action="../forms/eliminardulceria.php" method="post" role="form" id="eliminar">
+                                    <input name="id" type="hidden" value="' . $row['id_producto'] . '">
+                                    <input type="submit" class="btn btn-danger" value="Eliminar">
+                                    </form>
+                                    </td>';
+                                    }
                                     echo '</tr>';
                                 }
                             }
@@ -141,6 +195,7 @@ include_once '../forms/imgp.php';
     <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/vendor/jquery.easing/jquery.easing.min.js"></script>
     <script src="../assets/vendor/php-email-form/promociones-form.js"></script>
+    <script src="../assets/vendor/php-email-form/eliminado.js"></script>
     <script src="../assets/vendor/jquery-sticky/jquery.sticky.js"></script>
     <script src="../assets/vendor/venobox/venobox.min.js"></script>
     <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>

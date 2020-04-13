@@ -1,38 +1,37 @@
 <?php
+
 include_once '../forms/user.php';
 include_once '../forms/roles.php';
 include_once '../forms/Session.php';
-include_once '../forms/dulceria.php';
+include_once '../forms/torneos.php';
 
 $userSession = new UserSession();
+$rolesaccess = new roles;
+$torneo = new torneos;
 $user = new login();
-$dulceria = new dulceria;
-$rol = new roles;
 
 if (isset($_SESSION['user'])) {
     $user->setUserAndfk($userSession->getCurrentUser());
-    $rol->setUserrolaccess($user->getuserid());
-
+    $rolesaccess->setUserrolaccess($user->getuserid());
     if ($user->getborrado() === 1) {
-        header("location: ../admin.php");
+        header("location: ../info.php");
         return;
     }
-    if ($rol->getrolaccess_modificardulceria() == 1) {
-        if (isset($_POST['id'])) {
-             $dulceria->set($_POST['id']);
-        } else {
-            header("location: ../admin.php");
-        }
-    } else {
+
+    if($rolesaccess->getrolaccess_addjuegos() === 0){
+        header("location: ../dashboard.php");
+        return;
+    }
+
+    if ($rolesaccess->getrolaccess_eliminarusuarios() === 0) {
         header("location: ../admin.php");
+        return;
     }
 } else {
     header("location: ../index.php");
 }
 include_once '../forms/imgp.php';
 ?>
-
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -40,9 +39,9 @@ include_once '../forms/imgp.php';
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Roles</title>
+    <title>Gaming Center</title>
     <meta content="" name="descriptison">
-    <meta content="" name="keywords">
+    <meta content="Gaming Center" name="keywords">
 
     <!-- Favicons -->
     <link href="../assets/img/favicon.png" rel="icon">
@@ -63,12 +62,14 @@ include_once '../forms/imgp.php';
     <link href="../assets/css/style.css" rel="stylesheet">
     <link href="../assets/css/animation.css" rel="stylesheet">
 
+
 </head>
 
 <body id="main">
-    <!-- ======= Header ======= -->
+
     <header id="mainheader" class="d-flex align-items-center">
         <div class="container">
+
             <!-- The main logo is shown in mobile version only. The centered nav-logo in nav menu is displayed in desktop view  -->
             <div class="logo d-block d-lg-none">
                 <a href="../index.php"><img src="../assets/img/logo.png" alt="" class="img-fluid"></a>
@@ -101,7 +102,6 @@ include_once '../forms/imgp.php';
                 <li><a href="../usuarios/eliminar.php">Usuarios</a></li>
                 <li><a href="../roles/modificarrol.php">Roles</a></li>
                 <li><a href="../consolas/modificar.php">Consolas</a></li>
-                <li><a href="../tarifas/modificar.php">Tarifas</a></li>
                 <li><a href="../juegos/modificar.php">Juegos</a></li>
                 <li><a href="../torneos/modificar.php">Torneos</a></li>
                 <li><a href="../dulceria/modificar.php">Dulceria</a></li>
@@ -110,45 +110,122 @@ include_once '../forms/imgp.php';
         </nav>
     </div>
 
+
     <!-- ======= Contact Section ======= -->
-    <section id="" class="promotion section-bg">
+    <section id="" class="login section-bg">
         <div class="containe ">
 
             <div class="section-title">
-                <h2>Modificar Dulceria</h2>
+                <h2>Registro de usuario</h2>
             </div>
+
             <div class="row justify-content-center h-100">
                 <div class="col-lg-8 mt-5 mt-lg-0">
-                    <form action="../forms/modificardulceria.php" method="post" role="form" class="promociones-form" data-aos="fade-down-left">
+                    <form action="registro.php" method="post" role="form" class="php-email-form" data-aos="fade-down-left">
+
 
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group">
-                                <input type="hidden" name="id" value="<?php echo $dulceria->getid(); ?>" />
-                                <input type="text" name="nombre" class="form-control" value="<?php echo $dulceria->getnombre(); ?>" id="nombre" placeholder="Nombre" data-rule="required" data-msg="Por favor introduzca un nombre del producto" />
+                                <h6>Ingresa un codigo de invitado si cuentas con uno: </h6>
+                                <input type="text" name="codigo" class="form-control" id="code_invitado" placeholder="Codigo de invitado (No requerido)" />
                                 <div class="validate"></div>
                             </div>
                         </div>
 
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group">
-                                <input type="text" name="Costo" class="form-control" value="<?php echo $dulceria->getcosto(); ?>" id="descripcion" placeholder="Costo" data-rule="required" data-msg="Por favor introduzca un costo de producto" />
+                                <h6>Nombre de usuario:</h6>
+                                <input type="text" name="user" class="form-control" id="user" placeholder="Usuario*" data-rule="minlen:4" data-msg="Por favor introduzca un usuario valido" />
+                                <div class="validate"></div>
+                            </div>
+                        </div>
+                        <div class="form-row justify-content-center">
+                            <div class="col-md-6 form-group">
+                                <h6>Contraseña:</h6>
+                                <input type="password" class="form-control" name="password" id="pass" placeholder="Contraseña*" data-rule="pass:8" data-msg="Por favor introduzca una contraseña valida mayor a 8 digitos" />
+                                <div class="validate"></div>
+                            </div>
+                        </div>
+                        <div class="form-row justify-content-center">
+                            <div class="col-md-6 form-group">
+                                <h6>Confirma tu contraseña:</h6>
+                                <input type="password" class="form-control" name="password_validar" id="pass_valider" placeholder="Confirma Contraseña*" data-rule="conf_pass" data-msg="Las contraseñas que ingreso no son iguales" />
+                                <div class="validate"></div>
+                            </div>
+                        </div>
+                        <div class="form-row justify-content-center">
+                            <div class="col-md-6 form-group">
+                                <h6>Nombre:</h6>
+                                <input type="text" class="form-control" name="Nombre" id="name_user" placeholder="Nombre*" data-rule="pass:1" data-msg="Por favor introduzca una contraseña valida" />
+                                <div class="validate"></div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-row justify-content-center">
+                            <div class="col-md-6 form-group">
+                                <h6>Apellido:</h6>
+                                <input type="text" class="form-control" name="Apellido" id="Apellido_usuario" placeholder="Apellido(s)" data-rule="pass:3" data-msg="Por favor introduzca una apellido o apellidos valido(s)" />
                                 <div class="validate"></div>
                             </div>
                         </div>
 
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group">
-                                <input type="text" name="Cantidad" class="form-control" value="<?php echo $dulceria->getcatidad() ?>" id="numero" placeholder="Cantidad" data-rule="required" data-msg="Por favor introduzca una cantidad" />
+                                <h6>Nickname en videojuegos:</h6>
+                                <input type="text" class="form-control" name="nickname" id="nickname" placeholder="Apodo de jugador (Nickname)" />
                                 <div class="validate"></div>
                             </div>
                         </div>
 
+
+
+                        <div class="form-row justify-content-center">
+                            <div class="col-md-6 form-group">
+                                <h6>Fecha de nacimiento:</h6>
+                                <input type="date" class="form-control" name="FechaN" id="FechaN_usuario" placeholder="FechaN_usuario" data-rule="fecha" data-msg="Por favor introduzca una fecha de nacimiento valida" />
+                                <div class="validate"></div>
+                            </div>
+
+
+                        </div>
+                        <div class="form-row justify-content-center">
+                            <div class="col-md-6 form-group">
+                                <h6>Sexo: </h6>
+                                <select class="form-control" name="sexo">
+                                    <option value="Hombre">Hombre</option>
+                                    <option value="Mujer">Mujer</option>
+                                    <option value="No especificar">No especificar</option>
+                                </select>
+                                <div class="validate"></div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-row justify-content-center">
+                           
+                            <div class="col-md-6 form-group"> 
+                                <h6>Correo: </h6>
+                                <input type="email" class="form-control" name="Correo_electronico" id="Correo_electronico" placeholder="Correo electronico*" data-rule="email" data-msg="Por favor introduzca una correo electronico valido" />
+                                <div class="validate"></div>
+                            </div>
+
+
+                        </div>
+                        <div class="form-row justify-content-center">
+                            <div class="col-md-6 form-group">
+                                <h6>Telefono: </h6>
+                                <input type="tel" class="form-control" name="Telefono" id="Telefono_usuario" placeholder="Telefono ej. 8341005001" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" />
+                            </div>
+
+                        </div>
                         <div class="mb-3">
                             <div class="loading">Loading</div>
                             <div class="okey-message"></div>
                             <div class="error-message"></div>
                         </div>
-                        <div class="text-center"><button type="submit">Guardar</button></div>
+                        <div class="text-center"><button type="submit">Registrarse</button></div>
                     </form>
                 </div>
             </div>
@@ -160,7 +237,7 @@ include_once '../forms/imgp.php';
     <script src="../assets/vendor/jquery/jquery.min.js"></script>
     <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-    <script src="../assets/vendor/php-email-form/promociones-form.js"></script>
+    <script src="../assets/vendor/php-email-form/validate_regist.js"></script>
     <script src="../assets/vendor/jquery-sticky/jquery.sticky.js"></script>
     <script src="../assets/vendor/venobox/venobox.min.js"></script>
     <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>

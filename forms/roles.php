@@ -183,7 +183,7 @@ class roles extends DB
         'addpromo'=>0,
         'elipromo'=>0,
         'id'=> $id]);
-        echo "Datos Guardados";
+        echo "Rol Guardado";
     }
 
 
@@ -215,7 +215,7 @@ class roles extends DB
         ,$addconsolas,$modiconsolas,$eliconsolas,$addjuegos,$modijuegos,$elijuegos,$adddulceria,$modidulceria,$elidulceria,
         $addtorneo,$moditorneos,$elitorneos,$eliusuarios,$modipromo,0,0]);
 
-        echo "Datos Guardados";
+        echo "Rol Guardado";
     }
 
     public function eliminar($id){

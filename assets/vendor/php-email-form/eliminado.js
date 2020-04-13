@@ -15,15 +15,15 @@ jQuery(document).ready(function($) {
             data: str,
             success: function(msg) {
                 if (msg == "dls") {
-                    setTimeout(function() { location.href = "eliminarrol.php" }, 1000);
+                    setTimeout(function() { location.href = "modificarrol.php" }, 1000);
                 } else if (msg == "consolaac") {
-                    setTimeout(function() { location.href = "eliminar.php" }, 1000);
+                    setTimeout(function() { location.href = "modificar.php" }, 1000);
                 } else if (msg == "juegoac") {
-                    setTimeout(function() { location.href = "eliminar.php" }, 1000);
+                    setTimeout(function() { location.href = "modificar.php" }, 1000);
                 } else if (msg == "torneoac") {
-                    setTimeout(function() { location.href = "eliminar.php" }, 1000);
+                    setTimeout(function() { location.href = "modificar.php" }, 1000);
                 } else if (msg == "dulceriaac") {
-                    setTimeout(function() { location.href = "eliminar.php" }, 1000);
+                    setTimeout(function() { location.href = "modificar.php" }, 1000);
                 } else if (msg == "Participando") {
                     this_form.find('.loading').slideUp();
                     this_form.find('.okey-message').slideDown().html(msg);

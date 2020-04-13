@@ -71,7 +71,17 @@ jQuery(document).ready(function($) {
                 if (msg == 'Datos Guardados') {
                     this_form.find('.loading').slideUp();
                     this_form.find('.okey-message').slideDown().html(msg);
-                    setTimeout(function() { location.href = "../admin.php" }, 1000);
+                    setTimeout(function() { location.href = "modificar.php" }, 1000);
+                    modificarrol
+                } else if (msg == 'Rol Guardado') {
+                    this_form.find('.loading').slideUp();
+                    this_form.find('.okey-message').slideDown().html(msg);
+                    setTimeout(function() { location.href = "modificarrol.php" }, 1000);
+
+                } else if (msg == 'Guardado') {
+                    this_form.find('.loading').slideUp();
+                    this_form.find('.okey-message').slideDown().html(msg);
+                    setTimeout(function() { location.href = "view_promociones.php" }, 1000);
                 } else if (msg == "Datos Guardados De Relacion") {
                     this_form.find('.loading').slideUp();
                     this_form.find('.okey-message').slideDown().html(msg);

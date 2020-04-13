@@ -8,8 +8,10 @@ $user = new login();
 
 if(isset($_SESSION['user'])){
     $user->setUserAndfk($userSession->getCurrentUser());
-    header("location: ../dashboard.php");
-}else if(isset($_POST['user']) && isset($_POST['password'])){
+    echo "Se encuentra una sesion existente";
+}
+
+else if(isset($_POST['user']) && isset($_POST['password'])){
     $userForm = $_POST['user'];
     $passwordForm = $_POST['password'];
     if($user->userExists($userForm,$passwordForm)){
@@ -19,7 +21,8 @@ if(isset($_SESSION['user'])){
         echo "Nombre de usuario y/o password incorrecto";
     } 
 }else {
-    include_once 'view_login.php';
+    
+    header("location: ../dashboard.php");
 }
 
 

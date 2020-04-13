@@ -18,6 +18,19 @@ if (isset($_SESSION['user'])) {
         return;
     }
     $rolesaccess->setUserrolaccess($user->getuserid());
+
+    if (
+        $rolesaccess->getrolaccess_addroles() == 0 && $rolesaccess->getrolaccess_asignarroles() === 0 && $rolesaccess->getrolaccess_deletroles() === 0 && $rolesaccess->getrolaccess_modificarroles() === 0
+        && $rolesaccess->getrolaccess_addconsolas() == 0 && $rolesaccess->getrolaccess_Modificarconsolas() === 0 && $rolesaccess->getrolaccess_deletconsolas() === 0 && $rolesaccess->getrolaccess_addjuegos() === 0
+        && $rolesaccess->getrolaccess_modificarjuegos() == 0  && $rolesaccess->getrolaccess_deletjuegos() === 0 && $rolesaccess->getrolaccess_adddulceria() === 0
+        && $rolesaccess->getrolaccess_modificardulceria() == 0 && $rolesaccess->getrolaccess_deletdulceria() === 0 && $rolesaccess->getrolaccess_addtorneo() === 0
+        && $rolesaccess->getrolaccess_modificartorneo() == 0 && $rolesaccess->getrolaccess_delettorneo() == 0 &&
+        $rolesaccess->getrolaccess_eliminarusuarios()  == 0 && $rolesaccess->getrolaccess_modificarpromociones()  == 0
+    ) {
+        header("location: ../dashboard.php");
+        return;
+    }
+
 } else {
     header("location: ../index.php");
 }
@@ -103,36 +116,139 @@ include_once 'forms/imgp.php';
             </div>
         </div>
     </div>
+    
 
-    <?php if ($rolesaccess->getrolaccess_eliminarusuarios() == 1) {
-        include_once 'usuarios/view_usuarios.php';
+
+
+    <div class="menuleft">
+        <nav>
+            <ul>
+                <li><a href="/usuarios/eliminar.php">Usuarios</a></li>
+                <li><a href="/roles/modificarrol.php">Roles</a></li>
+                <li><a href="/consolas/modificar.php">Consolas</a></li>
+                <li><a href="/tarifas/modificar.php">Tarifas</a></li>
+                <li><a href="/juegos/modificar.php">Juegos</a></li>
+                <li><a href="/torneos/modificar.php">Torneos</a></li>
+                <li><a href="/dulceria/modificar.php">Dulceria</a></li>
+                <li><a href="/promociones/view_promociones.php">Promociones</a></li>
+            </ul>
+        </nav>
+    </div>
+    
+    <?php if ($rolesaccess->getrolaccess_eliminarusuarios()  == 1) {
+        echo '<div class="row justify-content-center h-100">
+        <div class="col-lg-8 mt-5 mt-lg-0">
+            <div class="col-sm-12 align-self-center text-center">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h1>Usuarios</h1>
+                            <h4>
+                            <a href="usuarios/view_registro.php">
+                            <input type="button" class="btn btn-primary" value="Agregar">
+                            </a>
+                        </h4>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Status</th> <!-- Borrado -->
+                                        <th scope="col">Codigo de usuario</th> <!-- Codigo_usuario -->
+                                        <th scope="col">Apodo de jugador</th> <!-- nickname_usuario -->
+                                        <th scope="col">Nombre</th> <!-- Nombre_usuario -->
+                                        <th scope="col">Apellido(s)</th> <!-- ApellidoP_usuario -->
+                                        <th scope="col">Edad</th> <!-- FechaN_usuario -->
+                                        <th scope="col">Sexo</th> <!-- Genero_usuario -->
+                                        <th scope="col">Telefono</th> <!-- Telefono_usuario -->
+                                        <th scope="col">Correo</th> <!-- Correo_electronico -->
+                                        <th scope="col">Facebook</th> <!-- FB_usuario -->
+                                        <th scope="col">Youtube</th> <!-- YT_usuairo -->
+                                        <th scope="col">Twitch</th> <!-- Twitch_usuario -->
+                                        <th scope="col">Twitter</th>
+                                        <!--Twitter_usuario -->
+                                        <th scope="col">Instragram</th> <!-- IG_usuario -->
+                                        <th scope="col">Monedas</th> <!-- Monedas_usuario -->
+                                        <th scope="col">Rol de usuario</th> <!-- Rol_usuario -->
+                                        <th scope="col">Borrado</th> <!-- Borrado -->
+                                    </tr>
+                                </thead>
+                                <tbody>';
+        $consulta = $user->allusers();
+        $i = 0;
+        if ($consulta->rowCount() > 0) {
+            while ($row = $consulta->fetch(PDO::FETCH_ASSOC)) {
+                $i += 1;
+                echo "<tr>";
+                echo '<th scope="row">' . $i . '</th>';
+
+                if ($row['Borrado'] == 0) {
+                    echo '<td>
+                                        <form action="../forms/eliminar.php" method="post" role="form" id="eliminar">
+                                        <input name="id" type="hidden" value="' . $row['Codigo_usuario'] . '">
+                                        <input type="submit" class="btn btn-danger" value="Eliminar">
+                                        </form>
+                                        </td>';
+                } else {
+                    echo '<td>
+                                        <form action="../forms/activar.php" method="post" role="form" id="activar">
+                                        <input name="id" type="hidden" value="' . $row['Codigo_usuario'] . '">
+                                        <input type="submit" class="btn btn-success" value="Activar">
+                                        </form>
+                                        </td>';
+                }
+
+                echo '<td>' . $row['Codigo_usuario'] . '</td>';
+                echo '<td>' . $row['nickname_usuario'] . '</td>';
+                echo '<td>' . $row['Nombre_usuario'] . '</td>';
+                echo '<td>' . $row['ApellidoP_usuario'] . '</td>';
+                echo '<td>' . $row['FechaN_usuario'] . '</td>';
+                echo '<td>' . $row['Genero_usuario'] . '</td>';
+                echo '<td>' . $row['Telefono_usuario'] . '</td>';
+                echo '<td>' . $row['Correo_electronico'] . '</td>';
+                echo '<td>' . $row['FB_usuario'] . '</td>';
+                echo '<td>' . $row['YT_usuairo'] . '</td>';
+                echo '<td>' . $row['Twitch_usuario'] . '</td>';
+                echo '<td>' . $row['Twitter_usuario'] . '</td>';
+                echo '<td>' . $row['IG_usuario'] . '</td>';
+                echo '<td>' . $row['Monedas_usuario'] . '</td>';
+                echo '<td>' . $row['Rol_usuario'] . '</td>';
+                if ($row['Borrado'] == 0) {
+                    echo '<td>Activo</td>';
+                } else {
+                    echo '<td>Eliminado</td>';
+                }
+                echo '</tr>';
+            }
+            echo '</tbody>
+                </table>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>';
+        }
+    } else {
+        
+        echo '<div class="row justify-content-center h-100">
+        <div class="col-lg-8 mt-5 mt-lg-0">
+            <div class="col-sm-12 align-self-center text-center">
+                <div class="card shadow">
+                    <div class="card-body">
+                    <h2>Sin Permisos</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>';
     } ?>
 
-    <?php if ($rolesaccess->getrolaccess_addroles() == 1 || $rolesaccess->getrolaccess_asignarroles() == 1 || $rolesaccess->getrolaccess_deletroles() == 1 ||  $rolesaccess->getrolaccess_modificarroles() == 1) {
-        include_once 'roles/view_roles.php';
-    } ?>
 
 
-    <?php if ($rolesaccess->getrolaccess_addconsolas() == 1 || $rolesaccess->getrolaccess_Modificarconsolas() == 1 || $rolesaccess->getrolaccess_deletconsolas() == 1) {
-        include_once 'consolas/view_consolas.php';
-    } ?>
-
-    <?php if ($rolesaccess->getrolaccess_addjuegos() == 1 || $rolesaccess->getrolaccess_modificarjuegos() == 1 || $rolesaccess->getrolaccess_deletjuegos() == 1) {
-        include_once 'juegos/view_juegos.php';
-    } ?>
-
-    <?php if ($rolesaccess->getrolaccess_addtorneo() == 1 || $rolesaccess->getrolaccess_modificartorneo() == 1 || $rolesaccess->getrolaccess_delettorneo() == 1) {
-        include_once 'torneos/view_torneos.php';
-    } ?>
-
-    <?php if ($rolesaccess->getrolaccess_adddulceria() == 1 || $rolesaccess->getrolaccess_modificardulceria() == 1 || $rolesaccess->getrolaccess_deletdulceria() == 1) {
-        include_once 'dulceria/view_dulceria.php';
-    } ?>
 
 
-    <?php if ($rolesaccess->getrolaccess_modificarpromociones() == 1) {
-        include_once 'promociones/view_promociones.php';
-    } ?>
+
+
 
     <!-- Vendor JS Files -->
     <script src="assets/vendor/jquery/jquery.min.js"></script>

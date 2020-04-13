@@ -18,6 +18,10 @@ if (isset($_SESSION['user'])) {
         return;
     }
     $rolesaccess->setUserrolaccess($user->getuserid());
+    if($rolesaccess->getrolaccess_eliminarusuarios()  == 0 ){
+        header("location: ../dashboard.php");
+        return;
+    }
 } else {
     header("location: ../index.php");
 }
@@ -104,18 +108,40 @@ include_once '../forms/imgp.php';
         </div>
     </div>
 
+    <div class="menuleft">
+        <nav>
+            <ul>
+                <li><a href="../usuarios/eliminar.php">Usuarios</a></li>
+                <li><a href="../roles/modificarrol.php">Roles</a></li>
+                <li><a href="../consolas/modificar.php">Consolas</a></li>
+                <li><a href="../tarifas/modificar.php">Tarifas</a></li>
+                <li><a href="../juegos/modificar.php">Juegos</a></li>
+                <li><a href="../torneos/modificar.php">Torneos</a></li>
+                <li><a href="../dulceria/modificar.php">Dulceria</a></li>
+                <li><a href="../promociones/view_promociones.php">Promociones</a></li>
+            </ul>
+        </nav>
+    </div>
+
     <div class="row justify-content-center h-100">
         <div class="col-lg-8 mt-5 mt-lg-0">
             <div class="col-sm-12 align-self-center text-center">
                 <div class="card shadow">
                     <div class="card-body">
-                        <h1>Categoria Usuarios</h1>
+                        <h1>Usuarios</h1>
+                        <h4>
+                            <?php 
+                             echo '<a href="view_registro.php">
+                                <input type="button" class="btn btn-primary " value="Agregar">
+                            </a>';
+                            ?>
+                        </h4>
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Borrar</th> <!-- Borrado -->
+                                        <th scope="col">Status</th> <!-- Borrado -->
                                         <th scope="col">Codigo de usuario</th> <!-- Codigo_usuario -->
                                         <th scope="col">Apodo de jugador</th> <!-- nickname_usuario -->
                                         <th scope="col">Nombre</th> <!-- Nombre_usuario -->
@@ -145,21 +171,24 @@ include_once '../forms/imgp.php';
                                             echo "<tr>";
                                             echo '<th scope="row">' . $i . '</th>';
 
-                                            if ($row['Borrado'] == 0) {
-                                                echo '<td>
+                                            if ($rolesaccess->getrolaccess_eliminarusuarios() === 1) {
+                                                if ($row['Borrado'] == 0) {
+                                                    echo '<td>
                                             <form action="../forms/eliminar.php" method="post" role="form" id="eliminar">
                                             <input name="id" type="hidden" value="' . $row['Codigo_usuario'] . '">
                                             <input type="submit" class="btn btn-danger" value="Eliminar">
                                             </form>
                                             </td>';
-                                            } else {
-                                                echo '<td>
-                                            <form action="forms/activar.php" method="post" role="form" id="activar">
+                                                } else {
+                                                    echo '<td>
+                                            <form action="../forms/activar.php" method="post" role="form" id="activar">
                                             <input name="id" type="hidden" value="' . $row['Codigo_usuario'] . '">
                                             <input type="submit" class="btn btn-success" value="Activar">
                                             </form>
                                             </td>';
+                                                }
                                             }
+
 
                                             echo '<td>' . $row['Codigo_usuario'] . '</td>';
                                             echo '<td>' . $row['nickname_usuario'] . '</td>';
@@ -211,4 +240,5 @@ include_once '../forms/imgp.php';
 
 
 </body>
+
 </html>

@@ -18,8 +18,11 @@ if (isset($_SESSION['user'])) {
         return;
     }
 
-    if ($rolesaccess->getrolaccess_modificartorneo() === 0) {
-        header("location: ../admin.php");
+    if (
+        $rolesaccess->getrolaccess_addtorneo() === 0
+        && $rolesaccess->getrolaccess_modificartorneo() == 0 && $rolesaccess->getrolaccess_delettorneo() == 0
+    ) {
+        header("location: ../dashboard.php");
         return;
     }
 } else {
@@ -91,24 +94,48 @@ include_once '../forms/imgp.php';
     </header>
 
 
+    <div class="menuleft">
+        <nav>
+            <ul>
+                <li><a href="../usuarios/eliminar.php">Usuarios</a></li>
+                <li><a href="../roles/modificarrol.php">Roles</a></li>
+                <li><a href="../consolas/modificar.php">Consolas</a></li>
+                <li><a href="../tarifas/modificar.php">Tarifas</a></li>
+                <li><a href="../juegos/modificar.php">Juegos</a></li>
+                <li><a href="../torneos/modificar.php">Torneos</a></li>
+                <li><a href="../dulceria/modificar.php">Dulceria</a></li>
+                <li><a href="../promociones/view_promociones.php">Promociones</a></li>
+            </ul>
+        </nav>
+    </div>
+
+
     <div class="row justify-content-center h-100">
         <div class="col-lg-8 mt-5 mt-lg-0">
             <div class="col-sm-12 align-self-center text-center">
                 <div class="card shadow">
                     <div class="card-body">
-                        <h1>Modificar Torneo</h1>
+                        <h1>Torneo</h1>
+                        <h4><?php if ($rolesaccess->getrolaccess_addtorneo() === 1) {
+                            echo '<a href="../torneos/agregar.php">
+                                <input type="button" class="btn btn-primary" value="Agregar">
+                            </a>';
+                        } ?></h4>
+                        
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Torneo</th>
+
                                         <th scope="col">Nombre</th>
                                         <th scope="col">Descripcion</th>
                                         <th scope="col">Fecha</th>
                                         <th scope="col">Hora</th>
                                         <th scope="col">Estatus</th>
                                         <th scope="col">Estado</th>
+                                        <th scope="col">Editar</th>
+                                        <th scope="col">Eliminar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -122,12 +149,7 @@ include_once '../forms/imgp.php';
                                             echo '<th scope="row">' . $i . '</th>';
 
 
-                                            echo '<td>
-                                                <form action="modificar_con.php" method="post" role="form" id="eliminar">
-                                                <input name="id" type="hidden" value="' . $row['idTorneos'] . '">
-                                                <input type="submit" class="btn btn-primary" value="Modificar">
-                                                </form>
-                                                </td>';
+
 
 
                                             echo '<td>' . $row['Nombre_torneo'] . '</td>';
@@ -140,6 +162,39 @@ include_once '../forms/imgp.php';
                                             } else {
                                                 echo '<td>Activo</td>';
                                             }
+                                            if (
+                                                $rolesaccess->getrolaccess_modificartorneo() == 1
+                                            ) {
+                                                echo '<td>
+                                                <form action="modificar_con.php" method="post" role="form" id="">
+                                                <input name="id" type="hidden" value="' . $row['idTorneos'] . '">
+                                                <input type="submit" class="btn btn-primary" value="Modificar">
+                                                </form>
+                                                </td>';
+                                            }
+
+
+
+                                            if (
+                                                $rolesaccess->getrolaccess_delettorneo() == 1
+                                            ) {
+                                                if ($row['borrado'] == 1) {
+                                                    echo '<td>
+                                                        <form action="../forms/activartorneo.php" method="post" role="form" id="eliminar">
+                                                        <input name="id" type="hidden" value="' . $row['idTorneos'] . '">
+                                                        <input type="submit" class="btn btn-primary" value="Activar">
+                                                        </form>
+                                                        </td>';
+                                                } else {
+                                                    echo '<td>
+                                                        <form action="../forms/eliminartoreno.php" method="post" role="form" id="eliminar">
+                                                        <input name="id" type="hidden" value="' . $row['idTorneos'] . '">
+                                                        <input type="submit" class="btn btn-danger" value="Eliminar">
+                                                        </form>
+                                                        </td>';
+                                                }
+                                            }
+
 
                                             echo '</tr>';
                                         }
@@ -158,6 +213,7 @@ include_once '../forms/imgp.php';
         <script src="../assets/vendor/jquery/jquery.min.js"></script>
         <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="../assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+        <script src="../assets/vendor/php-email-form/eliminado.js"></script>
         <!-- <script src="assets/vendor/php-email-form/eliminado.js"></script> -->
         <script src="../assets/vendor/jquery-sticky/jquery.sticky.js"></script>
         <script src="../assets/vendor/venobox/venobox.min.js"></script>

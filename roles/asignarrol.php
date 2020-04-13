@@ -88,6 +88,21 @@ include_once '../forms/imgp.php';
         </div>
     </header>
 
+    <div class="menuleft">
+        <nav>
+            <ul>
+                <li><a href="../usuarios/eliminar.php">Usuarios</a></li>
+                <li><a href="../roles/modificarrol.php">Roles</a></li>
+                <li><a href="../consolas/modificar.php">Consolas</a></li>
+                <li><a href="../tarifas/modificar.php">Tarifas</a></li>
+                <li><a href="../juegos/modificar.php">Juegos</a></li>
+                <li><a href="../torneos/modificar.php">Torneos</a></li>
+                <li><a href="../dulceria/modificar.php">Dulceria</a></li>
+                <li><a href="../promociones/view_promociones.php">Promociones</a></li>
+            </ul>
+        </nav>
+    </div>
+
 
     <!-- ======= Contact Section ======= -->
     <section id="" class="promotion section-bg">

@@ -4,9 +4,9 @@
             <div class="card shadow">
                 <div class="card-body">
                     <h1>Categoria Dulceria</h1>
-                    <?php  if($rolesaccess->getrolaccess_adddulceria() == 1){include_once 'view_agregardulceria.php'; } ?>
-                    <?php  if($rolesaccess->getrolaccess_modificardulceria() == 1){include_once 'view_modificardulceria.php'; } ?>
-                    <?php  if($rolesaccess->getrolaccess_deletdulceria() == 1){include_once 'view_eliminardulceria.php'; } ?> 
+                    <?php  /*if($rolesaccess->getrolaccess_adddulceria() == 1){include_once 'view_agregardulceria.php'; } */ ?>
+                    <?php  include_once 'view_modificardulceria.php'; ?>
+                    <?php  /* if($rolesaccess->getrolaccess_deletdulceria() == 1){include_once 'view_eliminardulceria.php'; } */ ?> 
                 </div>
             </div>
         </div>

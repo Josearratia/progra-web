@@ -1,3 +1,18 @@
+<?php
+include_once 'forms/user.php';
+include_once 'forms/Session.php';
+
+$userSession = new UserSession();
+$user = new login();
+
+
+if(isset($_SESSION['user'])){
+    $user->setUserAndfk($userSession->getCurrentUser());
+    header("location: ../dashboard.php");
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -65,6 +80,7 @@
 
                                 <div class="form-row justify-content-center">
                                     <div class="col-md-6 form-group">
+                                        <h6>Usuario:</h6>
                                         <input type="text" name="user" class="form-control" id="user" placeholder="Usuario" data-rule="minlen:4" data-msg="Por favor introduzca un usuario valido" />
                                         <div class="validate"></div>
                                     </div>
@@ -72,6 +88,7 @@
 
                                 <div class="form-row justify-content-center">
                                     <div class="col-md-6 form-group">
+                                        <h6>Contraseña:</h6>
                                         <input type="password" class="form-control" name="password" id="pass" placeholder="Contraseña" data-rule="pass:1" data-msg="Por favor introduzca una contraseña valida" />
                                         <div class="validate"></div>
                                     </div>

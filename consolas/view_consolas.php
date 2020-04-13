@@ -4,9 +4,9 @@
             <div class="card shadow">
                 <div class="card-body">
                     <h1>Categoria Consolas</h1>
-                    <?php  if($rolesaccess->getrolaccess_addconsolas() == 1){include_once 'view_agregarconsolas.php'; } ?>
+                    <?php  /* if($rolesaccess->getrolaccess_addconsolas() == 1){include_once 'view_agregarconsolas.php'; } */ ?>
                     <?php  if($rolesaccess->getrolaccess_Modificarconsolas() == 1){include_once 'view_modificarconsolas.php'; } ?>
-                    <?php  if($rolesaccess->getrolaccess_deletconsolas() == 1){include_once 'view_eliminarconsolas.php'; } ?>                    
+                    <?php  /* if($rolesaccess->getrolaccess_deletconsolas() == 1){include_once 'view_eliminarconsolas.php'; }*/ ?>                    
                 </div>
             </div>
         </div>

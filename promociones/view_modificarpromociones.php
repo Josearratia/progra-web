@@ -1,3 +1,5 @@
+
+
 <!--<h1>Descripcion de la promocion</h1>-->
 <div class="table-responsive">
     <table class="table">
@@ -22,7 +24,7 @@
                     echo '<th scope="row">' . ($i+1) . '</th>';
                     echo '<td>' . $consulta[$i]['Descripcion'] . '</td>'; 
                     echo '<td>' . $consulta[$i]['Monedas'] . '</td>';
-                    echo '<td><a href="promociones/editarpromocion.php?id='. $consulta[$i]['Promociones_id'] .  '">
+                    echo '<td><a href="editarpromocion.php?id='. $consulta[$i]['Promociones_id'] .  '">
                     <input type="button" class="btn btn-primary" value="Editar"></a></td>';
                     echo '</tr>';
                 }

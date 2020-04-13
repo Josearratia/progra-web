@@ -5,9 +5,9 @@
                 <div class="card shadow">
                     <div class="card-body">
                         <h1>Categoria Juegos</h1>
-                        <?php  if($rolesaccess->getrolaccess_addjuegos() == 1){include_once 'view_agregarjuegos.php'; } ?>
+                        <?php  /*if($rolesaccess->getrolaccess_addjuegos() == 1){include_once 'view_agregarjuegos.php'; } */ ?>
                         <?php  if($rolesaccess->getrolaccess_modificarjuegos() == 1){include_once 'view_modificarjuegos.php'; } ?>
-                        <?php  if($rolesaccess->getrolaccess_deletjuegos() == 1){include_once 'view_eliminarjuegos.php'; } ?>
+                        <?php  /*if($rolesaccess->getrolaccess_deletjuegos() == 1){include_once 'view_eliminarjuegos.php'; } */ ?>
                     </div>
                 </div>
             </div>

@@ -82,6 +82,21 @@ include_once '../forms/imgp.php';
     </header>
 
 
+    <div class="menuleft">
+        <nav>
+            <ul>
+                <li><a href="../usuarios/eliminar.php">Usuarios</a></li>
+                <li><a href="../roles/modificarrol.php">Roles</a></li>
+                <li><a href="../consolas/modificar.php">Consolas</a></li>
+                <li><a href="../tarifas/modificar.php">Tarifas</a></li>
+                <li><a href="../juegos/modificar.php">Juegos</a></li>
+                <li><a href="../torneos/modificar.php">Torneos</a></li>
+                <li><a href="../dulceria/modificar.php">Dulceria</a></li>
+                <li><a href="../promociones/view_promociones.php">Promociones</a></li>
+            </ul>
+        </nav>
+    </div>
+
     <!-- ======= Contact Section ======= -->
     <section id="" class="promotion section-bg">
         <div class="containe ">
@@ -95,6 +110,7 @@ include_once '../forms/imgp.php';
 
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group">
+                                <h6>Nombre de la consola: </h6>
                                 <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Nombre" data-rule="required" data-msg="Por favor introduzca un nombre para la consola" />
                                 <div class="validate"></div>
                             </div>
@@ -102,6 +118,7 @@ include_once '../forms/imgp.php';
 
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group">
+                                <h6>Descripcion de la consola: </h6>
                                 <input type="text" name="descripcion" class="form-control" id="descripcion" placeholder="Descripcion" data-rule="required" data-msg="Por favor introduzca un descripcion para la consola" />
                                 <div class="validate"></div>
                             </div>
@@ -109,6 +126,7 @@ include_once '../forms/imgp.php';
 
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group">
+                                <h6>Numero de la consola: </h6>
                                 <input type="text" name="numero" class="form-control" id="numero" placeholder="Numero de consola" data-rule="required" data-msg="Por favor introduzca un numero de consola" />
                                 <div class="validate"></div>
                             </div>
@@ -116,6 +134,7 @@ include_once '../forms/imgp.php';
 
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group">
+                                <h6>Numero de serie:</h6>
                                 <input type="text" name="serie" class="form-control" id="serie" placeholder="Numero de serie de la consola" data-rule="required" data-msg="Por favor introduzca un numero de serie de la consola" />
                                 <div class="validate"></div>
                             </div>

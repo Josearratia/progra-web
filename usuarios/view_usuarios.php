@@ -4,9 +4,9 @@
             <div class="card shadow">
                 <div class="card-body">
                     <h1>Categoria Usuarios</h1>
-                    <h4>Eliminar Usuario:
+                    <h4>Modificar Usuario:
                         <a href="usuarios/eliminar.php">
-                            <input type="button" class="btn btn-danger" value="Eliminar">
+                            <input type="button" class="btn btn-primary" value="Modificar">
                         </a>
                     </h4>
                 </div>

@@ -18,8 +18,12 @@ if (isset($_SESSION['user'])) {
         return;
     }
 
-    if ($rolesaccess->getrolaccess_modificarjuegos() === 0) {
-        header("location: ../admin.php");
+    if (
+        $rolesaccess->getrolaccess_addjuegos() === 0
+        && $rolesaccess->getrolaccess_modificarjuegos() == 0
+        && $rolesaccess->getrolaccess_deletjuegos() === 0
+    ) {
+        header("location: ../dashboard.php");
         return;
     }
 } else {
@@ -91,23 +95,46 @@ include_once '../forms/imgp.php';
     </header>
 
 
+    <div class="menuleft">
+        <nav>
+            <ul>
+                <li><a href="../usuarios/eliminar.php">Usuarios</a></li>
+                <li><a href="../roles/modificarrol.php">Roles</a></li>
+                <li><a href="../consolas/modificar.php">Consolas</a></li>
+                <li><a href="../tarifas/modificar.php">Tarifas</a></li>
+                <li><a href="../juegos/modificar.php">Juegos</a></li>
+                <li><a href="../torneos/modificar.php">Torneos</a></li>
+                <li><a href="../dulceria/modificar.php">Dulceria</a></li>
+                <li><a href="../promociones/view_promociones.php">Promociones</a></li>
+            </ul>
+        </nav>
+    </div>
+
+
     <div class="row justify-content-center h-100">
         <div class="col-lg-8 mt-5 mt-lg-0">
             <div class="col-sm-12 align-self-center text-center">
                 <div class="card shadow">
                     <div class="card-body">
-                        <h1>Modificar Juego</h1>
+                        <h1>Juegos</h1>
+                       <?php if($rolesaccess->getrolaccess_addjuegos() === 1){
+                        echo '<h4><a href="agregar.php">
+                                <input type="button" class="btn btn-primary" value="Agregar">
+                            </a></h4>';
+                        }
+                        ?>
+                        <br>
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Accion</th>
+
                                         <th scope="col">Nombre</th>
                                         <th scope="col">Descripcion</th>
-                                        <th scope="col">Numero</th>
-                                        <th scope="col">Serie</th>
+                                        <th scope="col">Imagen</th>
                                         <th scope="col">Estado</th>
+                                        <th scope="col">Editar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -120,12 +147,7 @@ include_once '../forms/imgp.php';
                                             echo "<tr>";
                                             echo '<th scope="row">' . $i . '</th>';
 
-                                            echo '<td>
-                                                <form action="../juegos/modificar_jue.php" method="post" role="form" id="modificar">
-                                                <input name="id" type="hidden" value="' . $row['idJuego'] . '">
-                                                <input type="submit" class="btn btn-primary" value="Modificar">
-                                                </form>
-                                                </td>';
+
 
                                             echo '<td>' . $row['Nombre_juego'] . '</td>';
                                             echo '<td>' . $row['Descripcion'] . '</td>';
@@ -135,6 +157,35 @@ include_once '../forms/imgp.php';
                                                 echo '<td>Eliminado</td>';
                                             } else {
                                                 echo '<td>Activo</td>';
+                                            }
+
+                                            if (
+                                                $rolesaccess->getrolaccess_modificarjuegos() == 1
+                                            ) {
+                                                echo '<td>
+                                                <form action="../juegos/modificar_jue.php" method="post" role="form" id="modificar">
+                                                <input name="id" type="hidden" value="' . $row['idJuego'] . '">
+                                                <input type="submit" class="btn btn-primary" value="Modificar">
+                                                </form>
+                                                </td>';
+                                            }
+
+                                            if ($rolesaccess->getrolaccess_deletjuegos() === 1) {
+                                                if ($row['borrado'] == 1) {
+                                                    echo '<td>
+                                                    <form action="../forms/activarjuego.php" method="post" role="form" id="eliminar">
+                                                    <input name="id" type="hidden" value="' . $row['idJuego'] . '">
+                                                    <input type="submit" class="btn btn-primary" value="Activar">
+                                                    </form>
+                                                    </td>';
+                                                } else {
+                                                    echo '<td>
+                                                    <form action="../forms/eliminarjuego.php" method="post" role="form" id="eliminar">
+                                                    <input name="id" type="hidden" value="' . $row['idJuego'] . '">
+                                                    <input type="submit" class="btn btn-danger" value="Eliminar">
+                                                    </form>
+                                                    </td>';
+                                                }
                                             }
                                             echo '</tr>';
                                         }
@@ -153,6 +204,7 @@ include_once '../forms/imgp.php';
         <script src="../assets/vendor/jquery/jquery.min.js"></script>
         <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="../assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+        <script src="../assets/vendor/php-email-form/eliminado.js"></script>
         <!-- <script src="assets/vendor/php-email-form/eliminado.js"></script> -->
         <script src="../assets/vendor/jquery-sticky/jquery.sticky.js"></script>
         <script src="../assets/vendor/venobox/venobox.min.js"></script>
