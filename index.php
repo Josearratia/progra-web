@@ -35,7 +35,7 @@
   ======================================================== -->
 </head>
 
-<body background="\assets\img\2121741.jpg">
+<body style="background-color:black">
 
     <!-- ======= Hero Section ======= -->
     <section id="hero">

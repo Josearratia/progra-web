@@ -8,8 +8,8 @@ class consolas extends DB
     private $numero;
     private $serie;
     private $descripcion;
-    private $borrado; 
-
+    private $borrado;
+    private $costo;
     public function updateconsolas($id, $nombre, $descripcion, $numero, $serie, $borrado)
     {
         $consola = $this->connect()->prepare('UPDATE `consolas` SET `Nombre_consola` = :nombre, `Numero_consola` = :numero,
@@ -25,7 +25,8 @@ class consolas extends DB
         echo "Datos Guardados";
     }
 
-    public function eliminar($id){
+    public function eliminar($id)
+    {
         $consolael = $this->connect()->prepare('UPDATE `consolas` SET borrado = :borrado  WHERE idConsola = :id');
         $consolael->execute([
             'borrado' => '1',
@@ -34,7 +35,8 @@ class consolas extends DB
         echo "consolaac";
     }
 
-    public function activar($id){
+    public function activar($id)
+    {
         $consolaac = $this->connect()->prepare('UPDATE `consolas` SET `borrado`= :borrado  WHERE idConsola = :id');
         $consolaac->execute([
             'borrado' => '0',
@@ -58,18 +60,41 @@ class consolas extends DB
         }
     }
 
-    public function addconsolas($nombre,$tarifa,$descripcion, $numero, $serie)
+    public function addconsolas($nombre, $tarifa, $descripcion, $numero, $serie)
     {
         $consola = $this->connect()->prepare('INSERT INTO `consolas`(`idConsola`, `idtarifa`, `Nombre_consola`, `Numero_consola`, `NumeroSerie_consola`, `Descripcion_consola`, `borrado`) 
         VALUES (?,?,?,?,?,?,?)');
-        $consola->execute([NULL,  $tarifa, $nombre,$numero, $serie, $descripcion, 0]);
+        $consola->execute([NULL,  $tarifa, $nombre, $numero, $serie, $descripcion, 0]);
         echo "Datos Guardados";
     }
 
-    public function getall(){
+    public function getall()
+    {
         $consolas = $this->connect()->prepare('SELECT * FROM consolas');
         $consolas->execute();
         return $consolas;
+    }
+
+    public function getallandtarifa()
+    {
+        $consolas = $this->connect()->prepare('SELECT * FROM consolas JOIN tarifas ON consolas.idtarifa = tarifas.id');
+        $consolas->execute();
+        return $consolas;
+    }
+
+    public function getallonlyone($id)
+    {
+        $consolas = $this->connect()->prepare('SELECT * FROM consolas JOIN tarifas ON consolas.idtarifa = tarifas.id WHERE idConsola = :id');
+        $consolas->execute(['id' => $id]);
+        foreach ($consolas as $currentUser) {
+            $this->id = $currentUser['idConsola'];
+            $this->nombre = $currentUser['Nombre_consola'];
+            $this->numero = $currentUser['Numero_consola'];
+            $this->serie = $currentUser['NumeroSerie_consola'];
+            $this->descripcion = $currentUser['Descripcion_consola'];
+            $this->costo = $currentUser['costo'];
+            $this->borrado = $currentUser['borrado'];
+        }
     }
 
     public function getid()
@@ -97,7 +122,13 @@ class consolas extends DB
         return $this->descripcion;
     }
 
-    public function getborrado(){
+    public function getcosto(){
+        return $this->costo;
+    }
+
+
+    public function getborrado()
+    {
         return $this->borrado;
     }
 }
