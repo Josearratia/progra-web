@@ -121,6 +121,7 @@ include_once '../forms/imgp.php';
 
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group">
+                                <h6>Juego: </h6>
                                 <select name="juego" class="form-control">
                                     <?php
                                     $consulta = $juegos->getall();
@@ -137,6 +138,7 @@ include_once '../forms/imgp.php';
 
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group">
+                                <h6>Consola: </h6>
                                 <select name="consola" class="form-control">
                                     <?php
                                     $consulta = $consolas->getall();
@@ -179,6 +181,7 @@ include_once '../forms/imgp.php';
 
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group">
+                                <h6>Nombre del torneo: </h6>
                                 <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Nombre" data-rule="required" data-msg="Por favor introduzca un nombre para el torneo" />
                                 <div class="validate"></div>
                             </div>
@@ -186,6 +189,7 @@ include_once '../forms/imgp.php';
 
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group">
+                                <h6>Descripcion del torneo: </h6>
                                 <input type="text" name="descripcion" class="form-control" id="descripcion" placeholder="Descripcion" data-rule="required" data-msg="Por favor introduzca un descripcion para el torneo" />
                                 <div class="validate"></div>
                             </div>
@@ -193,6 +197,7 @@ include_once '../forms/imgp.php';
 
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group">
+                                 <h6>Juego y consola : </h6>
                                 <select name="juego" class="form-control">
                                     <?php
                                     $consulta = $relacion->getall();
@@ -209,6 +214,7 @@ include_once '../forms/imgp.php';
 
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group">
+                                <h6>Fecha del torneo: </h6>
                                 <input type="date" class="form-control" name="fecha" id="FechaN_usuario" placeholder="FechaN_usuario" data-rule="fecha" data-msg="Por favor introduzca una fecha valida" />
                                 <div class="validate"></div>
                             </div>
@@ -216,6 +222,7 @@ include_once '../forms/imgp.php';
 
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group">
+                                <h6>Hora del torneo: </h6>
                                 <input type="time" id="appt" name="hora" class="input-group Time" required>
                             </div>
                         </div>
@@ -223,6 +230,7 @@ include_once '../forms/imgp.php';
 
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group">
+                                <h6>Modalidad de torneo: </h6>
                                 <select name="modalidad" class="form-control">
                                     <option value="Un Jugador">Un Jugador</option>
                                     <option value="Duos">Duos</option>
@@ -231,10 +239,9 @@ include_once '../forms/imgp.php';
                             </div>
                         </div>
 
-
-
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group">
+                                <h6>Tipo de torneo: </h6>
                                 <select name="forma" class="form-control">
                                     <option value="presencial">Presencial</option>
                                     <option value="linea">línea</option>
@@ -245,12 +252,14 @@ include_once '../forms/imgp.php';
 
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group">
+                                <h6>Cantidad de jugadores: </h6>
                                 <input type="number" class="form-control" onkeydown="javascript: return event.keyCode == 69 ? false : true" name="cantidad" id="cantidad" placeholder="Cantidad maxima de jugadores" required />
                             </div>
                         </div>
 
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group">
+                            <h6>Premio del torneo: </h6>
                                 <input type="text" name="premios" class="form-control" id="premios" placeholder="Premios del torneo" />
                                 <div class="validate"></div>
                             </div>
@@ -258,6 +267,7 @@ include_once '../forms/imgp.php';
 
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group">
+                                <h6>Estatus del torneo: </h6>
                                 <select name="estatus" class="form-control">
                                     <option value="Pendiente">Pendiente</option>
                                     <option value="En Curso">En curso</option>

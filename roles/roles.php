@@ -14,7 +14,7 @@ if (isset($_SESSION['user'])) {
         header("location: ../info.php");
         return;
     }
-    if($rolesaccess->getrolaccess_addroles() == 0
+    if($rolesaccess->getrolaccess_addroles() == 1
     ){
         header("location: ../dashboard.php");
         return;

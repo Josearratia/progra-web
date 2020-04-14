@@ -70,9 +70,10 @@ include_once 'forms/imgp.php';
 
                     <li class="active"><a href="dashboard.php">Inicio</a></li>
                     <li class="active"><a href="referidos.php">Referidos</a></li>
+                    
                     <!-- <li class="active"><a href="Miperfil.php">Mi perfil</a></li> -->
                     <li class="nav-logo"><a href="index.php"><img src="assets/img/xbox-control-menu.png" alt="" class="img-fluid"></a></li>
-                    
+                    <li class="active"><a href="admin.php">Administración</a></li>
                     <li class="active"><a href="/forms/logout.php">Cerrar Sesión</a></li>
 
                 </ul>

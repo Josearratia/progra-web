@@ -35,7 +35,7 @@
   ======================================================== -->
 </head>
 
-<body>
+<body background="\assets\img\2121741.jpg">
 
     <!-- ======= Hero Section ======= -->
     <section id="hero">
@@ -104,7 +104,7 @@
                 <div class="row">
                     <div class="col-lg-6" data-aos="fade-right">
                         <div class="image" >
-                            <img src="\assets\img\8d8e1e88-eb00-46df-a7f3-d3084e03cea4.jpg">
+                            <img src="\assets\img\muestra1.jpg " style="max-width: 110%">
                         </div>
                     </div>
                     <div class="col-lg-6" data-aos="fade-left">
@@ -146,22 +146,22 @@
                 <div class="row">
                     <div class="col-lg-6 order-2 order-lg-1">
                         <div class="icon-box mt-5 mt-lg-0" data-aos="fade-up">
-                            <i class="bx bx-receipt"></i>
+                        <img src="\assets\img\control.PNG" style="max-width: 10%">
                             <h4>Renta de consolas</h4>
                             <p>Renta la consola que necesites con tu juego favorito el tiempo que tu quieras</p>
                         </div>
                         <div class="icon-box mt-5" data-aos="fade-up" data-aos-delay="100">
-                            <i class="bx bx-cube-alt"></i>
+                        <img src="\assets\img\snack.PNG" style="max-width: 15%">
                             <h4>Venta de Snacks</h4>
                             <p>Comida y botana recien preparada para mantenerte siempre con energía </p>
                         </div>
                         <div class="icon-box mt-5" data-aos="fade-up" data-aos-delay="200">
-                            <i class="bx bx-images"></i>
+                        <img src="\assets\img\torneo.PNG" style="max-width: 15%">
                             <h4>Torneos</h4>
                             <p>Torneos realizados con todas las normas de la federación internacional para que empieces a familiarizarte con el mundo de los ESports</p>
                         </div>
                         <div class="icon-box mt-5" data-aos="fade-up" data-aos-delay="200">
-                            <i class="bx bx-shield"></i>
+                        <img src="\assets\img\coins.PNG" style="max-width: 15%">
                             <h4>Sistema de lealtad</h4>
                             <p>Tenemos un sistema de puntos que premia tu lealtad on recompenzas increibles</p>
                         </div>
@@ -171,6 +171,7 @@
                 </div>
 
             </div>
+            
         </section>
         <!-- End Services Section -->
 
@@ -435,6 +436,13 @@
                 </ul>
 
             </div>
+            <div align="center" >
+                    <div class="col-lg-6" data-aos="fade-right">
+                        <div class="image" >
+                            <img src="\assets\img\muestrajuegos.jpg " style="max-width: 110%">
+                        </div>
+                    </div>
+                </div>
         </section>
         <!-- End Frequently Asked Questions Section -->
 

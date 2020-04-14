@@ -58,14 +58,13 @@ class consolas extends DB
         }
     }
 
-    public function addconsolas($nombre, $descripcion, $numero, $serie)
+    public function addconsolas($nombre,$tarifa,$descripcion, $numero, $serie)
     {
-        $consola = $this->connect()->prepare('INSERT INTO `consolas`(`idConsola`, `Nombre_consola`, `Numero_consola`, `NumeroSerie_consola`, `Descripcion_consola`, `borrado`) 
-        VALUES (?,?,?,?,?,?)');
-        $consola->execute([NULL, $nombre, $numero, $serie, $descripcion, 0]);
+        $consola = $this->connect()->prepare('INSERT INTO `consolas`(`idConsola`, `idtarifa`, `Nombre_consola`, `Numero_consola`, `NumeroSerie_consola`, `Descripcion_consola`, `borrado`) 
+        VALUES (?,?,?,?,?,?,?)');
+        $consola->execute([NULL,  $tarifa, $nombre,$numero, $serie, $descripcion, 0]);
         echo "Datos Guardados";
     }
-
 
     public function getall(){
         $consolas = $this->connect()->prepare('SELECT * FROM consolas');

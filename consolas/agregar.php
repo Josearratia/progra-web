@@ -2,9 +2,11 @@
 
 include_once '../forms/user.php';
 include_once '../forms/Session.php';
+include_once '../forms/tarifa.php';
 
 $userSession = new UserSession();
 $user = new login();
+$tarifa = new tarifas;
 
 if (isset($_SESSION['user'])) {
     $user->setUserAndfk($userSession->getCurrentUser());
@@ -18,6 +20,7 @@ if (isset($_SESSION['user'])) {
 }
 include_once '../forms/imgp.php';
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -121,6 +124,23 @@ include_once '../forms/imgp.php';
                                 <h6>Descripcion de la consola: </h6>
                                 <input type="text" name="descripcion" class="form-control" id="descripcion" placeholder="Descripcion" data-rule="required" data-msg="Por favor introduzca un descripcion para la consola" />
                                 <div class="validate"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-row justify-content-center">
+                            <div class="col-md-6 form-group">
+                                 <h6>Tarifa</h6>
+                                <select name="tarifa" class="form-control">
+                                    <?php
+                                    $consulta = $tarifa->getall();
+                                    $i = 0;
+                                    if ($consulta->rowCount() > 0) {
+                                        while ($row = $consulta->fetch(PDO::FETCH_ASSOC)) {
+                                            echo '<option value="' . $row['id'] . '"> Nombre De tarifa --  ' . $row['nombre'] . ' -- Costo --' .$row['costo'] . '</option>';
+                                        }
+                                    }
+                                    ?>
+                                </select>
                             </div>
                         </div>
 

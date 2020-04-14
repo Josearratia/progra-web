@@ -2,7 +2,6 @@
 
 include_once '../forms/user.php';
 include_once '../forms/Session.php';
-/* include_once '../forms/dulceria.php'; */
 
 $userSession = new UserSession();
 $user = new login();
@@ -26,7 +25,7 @@ include_once '../forms/imgp.php';
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Dulceria</title>
+    <title>Tarifas</title>
     <meta content="" name="descriptison">
     <meta content="" name="keywords">
 
@@ -103,32 +102,24 @@ include_once '../forms/imgp.php';
         <div class="containe ">
 
             <div class="section-title">
-                <h2>Agregar Producto</h2>
+                <h2>Agregar Tarifa</h2>
             </div>
             <div class="row justify-content-center h-100">
                 <div class="col-lg-8 mt-5 mt-lg-0">
-                    <form action="../forms/adddulceria.php" method="post" role="form" class="promociones-form" data-aos="fade-down-left">
+                    <form action="../forms/addtarifa.php" method="post" role="form" class="promociones-form" data-aos="fade-down-left">
 
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group">
-                                <h6>Nombre de producto: </h6>
-                                <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Nombre" data-rule="required" data-msg="Por favor introduzca un nombre para la consola" />
+                                <h6>Nombre de la trarifa: </h6>
+                                <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Nombre" data-rule="required" data-msg="Por favor introduzca un nombre para la tarifa" />
                                 <div class="validate"></div>
                             </div>
                         </div>
 
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group">
-                                <h6>Costo de producto: </h6>
-                                <input type="text" name="Costo" class="form-control" id="descripcion" placeholder="Costo" data-rule="required" data-msg="Por favor introduzca un descripcion para la consola" />
-                                <div class="validate"></div>
-                            </div>
-                        </div>
-
-                        <div class="form-row justify-content-center">
-                            <div class="col-md-6 form-group">
-                                <h6>Cantidad: </h6>
-                                <input type="text" name="Cantidad" class="form-control" id="numero" placeholder="Cantidad" data-rule="required" data-msg="Por favor introduzca un numero de consola" />
+                                <h6>Costo: </h6>
+                                <input type="text" name="costo" class="form-control" id="descripcion" placeholder="Descripcion" data-rule="required" data-msg="Por favor introduzca un costo de tarifa" />
                                 <div class="validate"></div>
                             </div>
                         </div>

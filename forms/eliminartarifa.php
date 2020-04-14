@@ -2,14 +2,15 @@
 include_once 'user.php';
 include_once 'roles.php';
 include_once 'Session.php';
-include_once 'promociones.php';
-include_once 'consolas.php';
+
+include_once 'tarifa.php';
 
 $userSession = new UserSession();
 $user = new login();
-$promo = new promociones();
 $rolesaccess = new roles;
-$consolas = new consolas();
+$tarifa = new tarifas;
+
+
 
 if (isset($_SESSION['user'])) {
     $user->setUserAndfk($userSession->getCurrentUser());
@@ -20,18 +21,13 @@ if (isset($_SESSION['user'])) {
     } else {
         if ($user->getrol() != 2) {
             $rolesaccess->setUserrolaccess($user->getuserid());
-            if ($rolesaccess->getrolaccess_addconsolas() == 1) {
-                if(isset($_POST['nombre']) && $_POST['tarifa'] && isset($_POST['descripcion']) &&
-                isset($_POST['numero']) && isset($_POST['serie'])){
-                    $consolas->addconsolas($_POST['nombre'],$_POST['tarifa'], $_POST['descripcion'], $_POST['numero'], $_POST['serie']);
+                if(isset($_POST['id']) ){
+                    $tarifa->deleted($_POST['id']);
                 }else{
                     echo "Ingrese bien los datos";
                 }
-            } else {
-                echo "error 2";
-                return;
-            }
-        } else {
+
+        }else {
             echo "error 1";
         }
     }
