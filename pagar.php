@@ -74,7 +74,7 @@ include_once 'forms/imgp.php';
                     } ?>
                     <li class="nav-logo"><a href="index.php"><img src="assets/img/xbox-control-menu.png" alt="" class="img-fluid"></a></li>
                     <li class="active"><a href="referidos.php">Referidos</a></li>
-                    
+
                     <li class="active"><a href="/forms/logout.php">Cerrar Sesión</a></li>
 
                 </ul>
@@ -88,18 +88,6 @@ include_once 'forms/imgp.php';
 
     <!-- endheader -->
 
-    <div class="row justify-content-center h-100">
-        <div class="col-lg-8 mt-5 mt-lg-0">
-            <div class="col-sm-12 align-self-center text-center">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <h1 class="m-5">Bienvenido <?php echo $user->getnickname(); ?></h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <br>
 
 
     <div class="row justify-content-center h-100">
@@ -107,27 +95,46 @@ include_once 'forms/imgp.php';
             <div class="col-sm-12 align-self-center text-center">
                 <div class="card shadow">
                     <div class="card-body">
-                        <h1 class="m-5">Torneos</h1>
-                        <div class="card-group mx-md-n2">
+                        <?php
+                        include_once 'forms/venta_productosdulceria.php';
+                        include_once 'forms/promociones.php';
+                        include_once 'forms/user.php';
+                        $user = new login();
+                        $venta = new venta_productosdulceria;
+                        $promo = new promociones();
+                        $promo->setpromocion(3);
+                        /* var_dump($_POST); */
+                        if (isset($_POST['count'])) {
+                            $iddulceria = array();
+                            $cantidades = array();
 
-                            <?php
-                            $consulta = $torneo->getall();
-                            $i = 0;
-                            if ($consulta->rowCount() > 0) {
-                                while ($row = $consulta->fetch(PDO::FETCH_ASSOC)) {
-                                    echo '<div class="col-lg-4 col-md-3 col-sm-6 col-xs-12" style="margin-bottom: 10px;">';
-                                    echo '<div class="card">';
-                                    echo ' <div class="card-body">';
-                                    echo '<h5 class="card-title">' . $row['Nombre_torneo'] . '</h5>';
-                                    echo  '<p class="card-text">' . $row['Descripcion_torneo'] . '</p>';
-                                    echo  '<a href="../torneos/participar/participar.php?id=' .  $row['idTorneos'] . '" class="btn btn-primary">Participar</a>';
-                                    echo '</div>';
-                                    echo '</div>';
-                                    echo '</div>';
+                            $ids = $_POST['count'];
+                            $ids = $ids - 1;
+                            for ($i = 0; $i <= $ids; $i++) {
+                                $iddulceria[] = $_POST['id' . $i];
+                                $cantidades[] = $_POST['cantidad' . $i];
+                            }
+
+                            if (isset($_POST['total'])) {
+                                if (isset($_POST['pago'])) {
+                                    if ($_POST['pago'] >= $_POST['total']) {
+                                        if ($venta->add($iddulceria, $_POST['total'], $cantidades, $_POST['pago']) == "Venta Realizada") {
+                                            if(isset($_POST['codeusuario'])){
+                                                $promocion = $promo->getmonedas() / 100; 
+                                                $monedas = $_POST['total'] * $promocion;
+                                                $user->updateCOINSRenta($_POST['codeusuario'],$monedas);
+                                            }
+                                            echo "<h1>Venta Realizada</h1>";
+                                            echo '<a href="venta.php" class="btn btn-primary btn-lg">Regresar</a>';
+                                        }
+                                    } else {
+                                        echo "<h1>Pago insuficiente</h1>";
+                                        echo '<a href="venta.php" class="btn btn-primary btn-lg">Regresar</a>';
+                                    }
                                 }
                             }
-                            ?>
-                        </div>
+                        }
+                        ?>
                     </div>
                 </div>
             </div>

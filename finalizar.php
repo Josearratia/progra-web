@@ -1,6 +1,4 @@
 <?php
-
-
 include_once 'forms/user.php';
 include_once 'forms/Session.php';
 include_once 'forms/tarifa.php';
@@ -140,16 +138,24 @@ include_once 'forms/imgp.php';
 
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group">
-                            <input id="idjuego" name="idjuego" type="hidden" value="<?php echo $juegos->getid(); ?>">
+                                <input id="idjuego" name="idjuego" type="hidden" value="<?php if ($idjuego === 0) {echo $juegos->getid(); }?>">
                                 <h6>Juego(Opcional) = <?php echo $juegos->getnombre() ?></h6>
                             </div>
                         </div>
 
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group">
-                                <h5>Total A Pagar: <?php echo $consola->getcosto();?></h5>
+                                <h5>Total A Pagar: <?php echo $consola->getcosto(); ?></h5>
                                 <h6>Pago:</h6>
                                 <input type="number" name="pago" class="form-control" id="descripcion" placeholder="Pago" data-rule="required" data-msg="Por favor introduzca un pago" />
+                                <div class="validate"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-row justify-content-center">
+                            <div class="col-md-6 form-group">
+                                <h6>Usuario Registrado</h6>
+                                <input type="text" name="usuario" class="form-control" id="usuario" placeholder="codigo de usuario"/>
                                 <div class="validate"></div>
                             </div>
                         </div>
@@ -172,7 +178,7 @@ include_once 'forms/imgp.php';
     <script src="assets/vendor/jquery/jquery.min.js"></script>
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-    <script src="assets/vendor/php-email-form/promociones-form.js"></script> 
+    <script src="assets/vendor/php-email-form/promociones-form.js"></script>
     <script src="assets/vendor/jquery-sticky/jquery.sticky.js"></script>
     <script src="assets/vendor/venobox/venobox.min.js"></script>
     <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>

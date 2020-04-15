@@ -3,10 +3,12 @@
 include_once 'forms/user.php';
 include_once 'forms/Session.php';
 include_once 'forms/torneos.php';
+include_once 'forms/dulceria.php';
 
 $userSession = new UserSession();
 $user = new login();
 $torneo = new torneos;
+$dulceria = new dulceria;
 
 if (isset($_SESSION['user'])) {
     $user->setUserAndfk($userSession->getCurrentUser());
@@ -28,7 +30,7 @@ include_once 'forms/imgp.php';
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Dashboard</title>
+    <title>Tienda</title>
     <meta content="" name="descriptison">
     <meta content="Gaming Center" name="keywords">
 
@@ -46,6 +48,8 @@ include_once 'forms/imgp.php';
     <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
     <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
@@ -74,7 +78,7 @@ include_once 'forms/imgp.php';
                     } ?>
                     <li class="nav-logo"><a href="index.php"><img src="assets/img/xbox-control-menu.png" alt="" class="img-fluid"></a></li>
                     <li class="active"><a href="referidos.php">Referidos</a></li>
-                    
+
                     <li class="active"><a href="/forms/logout.php">Cerrar Sesión</a></li>
 
                 </ul>
@@ -93,7 +97,28 @@ include_once 'forms/imgp.php';
             <div class="col-sm-12 align-self-center text-center">
                 <div class="card shadow">
                     <div class="card-body">
-                        <h1 class="m-5">Bienvenido <?php echo $user->getnickname(); ?></h1>
+                        <h1 id="titulo">Orden De Venta</h1>
+                        <div class="articulos" id="articulos">
+                            <label for="productos">Producto:</label>
+                            <select id="productos" name="productos">
+                                <?php
+                                $consulta = $dulceria->getall();
+                                $i = 0;
+                                if ($consulta->rowCount() > 0) {
+                                    while ($row = $consulta->fetch(PDO::FETCH_ASSOC)) {
+                                        if ($row['cantidad_Stock'] > 0) {
+                                            echo '<option value="' . $row['id_producto'] . '">'   . $row['Nombre_producto'] . '</option>';
+                                        }
+                                    }
+                                }
+                                ?>
+                            </select>
+
+                            <input type="hidden" id="precio" value="" name="precio">
+                            <label for="cantidad">Unidades:</label>
+                            <input type="number" id="cantidad" name="cantidad">
+                            <input type="button" class="boton" id="botonc" onclick="lista()" value="Agregar">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -101,45 +126,42 @@ include_once 'forms/imgp.php';
     </div>
     <br>
 
+    <script type="text/javascript">
+        $(document).ready(function() {
+            getprecio();
+            $('#productos').change(function(){
+                getprecio();
+            });
 
-    <div class="row justify-content-center h-100">
-        <div class="col-lg-8 mt-5 mt-lg-0">
-            <div class="col-sm-12 align-self-center text-center">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <h1 class="m-5">Torneos</h1>
-                        <div class="card-group mx-md-n2">
+            $('#botonc').click(function(){
+                getprecio();
+            });
+        })
+    </script>
 
-                            <?php
-                            $consulta = $torneo->getall();
-                            $i = 0;
-                            if ($consulta->rowCount() > 0) {
-                                while ($row = $consulta->fetch(PDO::FETCH_ASSOC)) {
-                                    echo '<div class="col-lg-4 col-md-3 col-sm-6 col-xs-12" style="margin-bottom: 10px;">';
-                                    echo '<div class="card">';
-                                    echo ' <div class="card-body">';
-                                    echo '<h5 class="card-title">' . $row['Nombre_torneo'] . '</h5>';
-                                    echo  '<p class="card-text">' . $row['Descripcion_torneo'] . '</p>';
-                                    echo  '<a href="../torneos/participar/participar.php?id=' .  $row['idTorneos'] . '" class="btn btn-primary">Participar</a>';
-                                    echo '</div>';
-                                    echo '</div>';
-                                    echo '</div>';
-                                }
-                            }
-                            ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <script type="text/javascript">
+        function getprecio() {
+            $.ajax({
+                type: "POST",
+                url: "datos.php",
+                data: "id=" + $('#productos').val(),
+                success:function(r){
+                    $precio = document.getElementById('precio');
+                    $precio.value = r;
+                }
+            });
+        }
+    </script>
+
+    
 
 
     <!-- Vendor JS Files -->
+    <script type='text/javascript' src='JavaScript.js'></script>
     <script src="assets/vendor/jquery/jquery.min.js"></script>
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/vendor/php-email-form/venta.js"></script>
     <script src="assets/vendor/jquery-sticky/jquery.sticky.js"></script>
     <script src="assets/vendor/venobox/venobox.min.js"></script>
     <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>

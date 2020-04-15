@@ -95,8 +95,13 @@ jQuery(document).ready(function($) {
         });
 
 
-        if (ferror) return false;
-        else var str = $(this).serialize();
+        if (ferror) {
+            return false;
+        } else {
+
+            var str = new FormData(this);
+            /* var str = $(this).serialize() ;*/
+        }
 
         var this_form = $(this);
         var action = $(this).attr('action');
@@ -113,8 +118,11 @@ jQuery(document).ready(function($) {
 
         $.ajax({
             type: "POST",
+            enctype: 'multipart/form-data',
             url: action,
             data: str,
+            processData: false,
+            contentType: false,
             success: function(msg) {
                 if (msg == "Usuario Agregado") {
                     this_form.find('.loading').slideUp();

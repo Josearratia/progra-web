@@ -21,36 +21,45 @@ if (isset($_SESSION['user'])) {
             $rolesaccess->setUserrolaccess($user->getuserid());
             if ($rolesaccess->getrolaccess_modificarjuegos() == 1) {
                 if (isset($_POST['id']) && isset($_POST['nombre']) && isset($_POST['descripcion']) && isset($_POST['oldname'])) {
-                    $directorio = $_SERVER['DOCUMENT_ROOT'] . "/assets/upload/imgjuegos/";
-                    
-                    $imgname = $_POST['oldname'];
+                    if (file_exists($_FILES['mp']['tmp_name']) || is_uploaded_file($_FILES['mp']['tmp_name'])) {
+                        $directorio = $_SERVER['DOCUMENT_ROOT'] . "/assets/upload/imgjuegos/";
 
-                    
-                    $newnombre = basename($imgname);
-                    $tipoArchivo = strtolower(pathinfo($imgname, PATHINFO_EXTENSION));
-                    $archivo = $directorio . $newnombre;
-                    
-                    $isimg = getimagesize($_FILES["mp"]["tmp_name"]);
+                        $imgname = $_POST['oldname'];
 
-                    if ($isimg != false) {
-                        $size = $_FILES["mp"]["size"];
 
-                        if ($size > 10000000) {
-                            echo "Archivo mayor a 10mb";
+                        $newnombre = basename($imgname);
+                        $tipoArchivo = strtolower(pathinfo($imgname, PATHINFO_EXTENSION));
+                        $archivo = $directorio . $newnombre;
+
+                        if (!file_exists($_FILES['mp']['tmp_name']) || !is_uploaded_file($_FILES['mp']['tmp_name'])) {
+                            echo 'No upload';
                         } else {
-                            if ($tipoArchivo == "jpg") {
-                                if (move_uploaded_file($_FILES["mp"]["tmp_name"], $archivo)) {
-                                    $juego->update($_POST['id'],$_POST['nombre'],$_POST['descripcion'],$imgname);
-                                } else {
-                                    echo "error al guardar el archivo";
-                                }
+                            $isimg = getimagesize($_FILES["mp"]["tmp_name"]);
+                        }
+                        
+
+                        if ($isimg != false) {
+                            $size = $_FILES["mp"]["size"];
+
+                            if ($size > 10000000) {
+                                echo "Archivo mayor a 10mb";
                             } else {
-                                echo "solo se permitente archivos jpg";
+                                if ($tipoArchivo == "jpg") {
+                                    if (move_uploaded_file($_FILES["mp"]["tmp_name"], $archivo)) {
+                                        $juego->update($_POST['id'], $_POST['nombre'], $_POST['descripcion'], $imgname);
+                                    } else {
+                                        echo "error al guardar el archivo";
+                                    }
+                                } else {
+                                    echo "solo se permitente archivos jpg";
+                                }
                             }
+                        } else {
+                            echo "Archivo no valido";
                         }
                     } else {
-                        echo "Archivo no valido";
-                    } 
+                        $juego->updatesinimag($_POST['id'], $_POST['nombre'], $_POST['descripcion']);
+                    }
                 } else {
                     echo "Ingrese bien los datos";
                 }
@@ -65,3 +74,4 @@ if (isset($_SESSION['user'])) {
 } else {
     include_once 'index.php';
 }
+X

@@ -43,6 +43,17 @@ class juegos extends DB
         echo "Datos Guardados";
     }
 
+    public function updatesinimag($id,$nombre,$descripcion){
+        $consola = $this->connect()->prepare('UPDATE `juegos` SET `Nombre_juego` = :nombre, `Descripcion` = :descripcion  WHERE idJuego = :id');
+        $consola->execute([
+            'nombre' => $nombre,
+            'descripcion' => $descripcion,
+            
+            'id' => $id
+        ]);
+        echo "Datos Guardados";
+    }
+
     public function eliminar($id){
         $juego = $this->connect()->prepare('UPDATE `juegos` SET borrado = :borrado  WHERE idJuego = :id');
         $juego->execute([

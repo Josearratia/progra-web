@@ -97,24 +97,24 @@
             <div class="container">
 
                 <div class="section-title" data-aos="fade-up">
-                    <h2>Conocenos</h2>
-                    <p>Gaming Center en Ciudad Victoria la capital del mundo.</p>
+                    <h2 style="color:white">Conocenos</h2>
+                    <p >Gaming Center en Ciudad Victoria la capital del mundo.</p>
                 </div>
 
-                <div class="row">
+                <div class="row" style="color:white">
                     <div class="col-lg-6" data-aos="fade-right">
                         <div class="image" >
                             <img src="\assets\img\muestra1.jpg " style="max-width: 110%">
                         </div>
                     </div>
-                    <div class="col-lg-6" data-aos="fade-left">
-                        <div class="content pt-4 pt-lg-0 pl-0 pl-lg-3 ">
+                    <div class="col-lg-6" data-aos="fade-left" >
+                        <div class="content pt-4 pt-lg-0 pl-0 pl-lg-3 " >
                             <h3>¡El entretenimiento que tú necesitas!</h3>
                             <p class="font-italic">
                                 Consolas de ultima generación, los videojuegos mas competitivos e instructores con amplio conocimiento del mundo competitivo del gaming es lo que te espera si te unes a nosotros.
                                 <h4>Contamos con:</h4>
                             </p>
-                            <ul>
+                            <ul >
                                 <li><i class="bx bx-check-double"></i> Sistema de renta basado únicamente en el tiempo que necesites.</li>
                                 <li><i class="bx bx-check-double"></i> Salas acondicionadas para garantizar la máxima comodidad y concentración mientras juegas.</li>
                                 <li><i class="bx bx-check-double"></i> Torneos con grandes premios.</li>
@@ -135,16 +135,16 @@
         <!-- End About Us Section -->
 
         <!-- ======= Services Section ======= -->
-        <section id="services" class="services">
+        <section id="services" class="services" >
             <div class="container">
 
                 <div class="section-title" data-aos="fade-up">
-                    <h2>Servicios</h2>
+                    <h2 style="color:white">Servicios</h2>
                     <p></p>
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-6 order-2 order-lg-1">
+                    <div class="col-lg-6 order-2 order-lg-1" style="color:white">
                         <div class="icon-box mt-5 mt-lg-0" data-aos="fade-up">
                         <img src="\assets\img\control.PNG" style="max-width: 10%">
                             <h4>Renta de consolas</h4>
@@ -167,7 +167,9 @@
                         </div>
 
                     </div>
-                    <div class="image col-lg-6 order-1 order-lg-2" style='background-image: url("assets/img/services.jpg");' data-aos="fade-left" data-aos-delay="100"></div>
+
+                    <div class="image col-lg-6 order-1 order-lg-2" style='background-image: url("assets/img/muestra1.jpg");' data-aos="fade-left" data-aos-delay="100"></div>
+                    <!-- <div class="image col-lg-6 order-1 order-lg-2" style='background-image: url("assets/img/services.jpg");' data-aos="fade-left" data-aos-delay="100"></div> -->
                 </div>
 
             </div>
@@ -332,7 +334,7 @@
                                 <li>Torneos de Mario Kart Delux</li>
                             </ul>
                             <div class="btn-wrap">
-                                <a href="#" class="btn-buy">Preventa</a>
+                                <!-- <a href="#" class="btn-buy">Preventa</a> -->
                             </div>
                         </div>
                     </div>
@@ -349,7 +351,7 @@
                                 <li>Pc Gamer</li>
                             </ul>
                             <div class="btn-wrap">
-                                <a href="#" class="btn-buy">Comprar ahora</a>
+                                <!-- <a href="#" class="btn-buy">Comprar ahora</a> -->
                             </div>
                         </div>
                     </div>
@@ -365,7 +367,7 @@
 
                             </ul>
                             <div class="btn-wrap">
-                                <a href="#" class="btn-buy">Realizar Reserva</a>
+                                <!-- <a href="#" class="btn-buy">Realizar Reserva</a> -->
                             </div>
                         </div>
                     </div>
@@ -378,13 +380,13 @@
 
         <!-- ======= Frequently Asked Questions Section ======= -->
         <section id="faq" class="faq">
-            <div class="container">
+            <div class="container" >
 
                 <div class="section-title" data-aos="fade-up">
-                    <h2>Preguntas Frecuentes</h2>
+                    <h2 style="color:white">Preguntas Frecuentes</h2>
                 </div>
 
-                <ul class="faq-list">
+                <ul class="faq-list" >
 
                     <li data-aos="fade-up">
                         <a data-toggle="collapse" class="collapsed" href="#faq1">¿Disponibilidad? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-x icon-close"></i></a>

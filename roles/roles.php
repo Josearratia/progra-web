@@ -2,9 +2,11 @@
 
 include_once '../forms/user.php';
 include_once '../forms/Session.php';
+include_once '../forms/roles.php';
 
 $userSession = new UserSession();
 $user = new login();
+$rolesaccess = new roles;
 
 if (isset($_SESSION['user'])) {
     $user->setUserAndfk($userSession->getCurrentUser());
@@ -75,6 +77,7 @@ include_once '../forms/imgp.php';
                         echo '<li class="active"><a href="../admin.php">Administracion</a></li>';
                     } ?>
                     <li class="nav-logo"><a href="../index.php"><img src="../assets/img/xbox-control-menu.png" alt="" class="img-fluid"></a></li>
+                    <li class="active"><a href="../renta.php">Renta (BETA)</a></li>
                     <li class="active"><a href="../referidos.php">Referidos</a></li>
                     <li class="active"><a href="../forms/logout.php">Cerrar Sesión</a></li>
 

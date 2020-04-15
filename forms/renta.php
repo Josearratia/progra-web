@@ -29,10 +29,15 @@ class renta extends DB
     {
         ini_set( 'date.timezone', 'America/Mexico_City' );
         $fecha = date('yy'). "-" . date('m'). "-" . date("d");
-        $consola = $this->connect()->prepare('INSERT INTO `renta`(`idRenta`, `Fecha_renta`, `Hora_renta`, `Consola_renta`, `Juego_renta`, `Accesorios_renta`, `pago`) 
+        $hora = date("h:i");
+
+        $renta = $this->connect()->prepare('INSERT INTO `renta`
+        (`idRenta`, `Fecha_renta`, `Hora_renta`, `Consola_renta`, `Juego_renta`, `Accesorios_renta`, `pago`) 
         VALUES (?,?,?,?,?,?,?)');
-        $consola->execute([NULL, NULL, NULL, $consola, $juego, NULL, $pago]);
-        echo "Datos Guardados";
+
+        $renta->execute([NULL, $fecha, $hora, $consola, $juego, NULL, $pago]);
+
+        echo "Venta realizada";
     }
 
     public function getid()

@@ -224,6 +224,28 @@ class login extends DB
         }
     }
 
+    public function updateCOINSRenta($unicode, $coins)
+    {
+        $usercoins = 0;
+        $usuario = $this->connect()->prepare('SELECT * FROM `usuarios` WHERE Codigo_usuario = :id');
+        $usuario->execute(['id' => $unicode]);
+
+        if ($usuario->rowCount()) {
+            foreach ($usuario as $currentUser) {
+                $usercoins = $currentUser['Monedas_usuario'];
+            }
+
+            $agregar = $usercoins + $coins;
+
+            $query = $this->connect()->prepare('UPDATE `usuarios` SET `Monedas_usuario` = :monedas WHERE Codigo_usuario = :userid');
+            
+            $query->execute([
+                'monedas' => $agregar,
+                'userid' => $unicode
+            ]);            
+        }
+    }
+
 
 
     public function updatesocial($facebook, $instagram, $twitch, $youtube, $twitter, $id)

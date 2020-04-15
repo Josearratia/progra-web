@@ -45,7 +45,7 @@
                 <ul class="nav-inner">
                     <li class="active"><a href="index.php">Home</a></li>
                     <li class="nav-logo"><a href="index.php"><img src="assets/img/xbox-control-menu.png" alt="" class="img-fluid"></a></li>
-                    <li><a href="login.php">Iniciar sesión</a></li>
+                    <li><a href="view_login.php">Iniciar sesión</a></li>
                 </ul>
             </nav><!-- .nav-menu -->
         </div>
@@ -62,11 +62,12 @@
 
             <div class="row justify-content-center h-100">
                 <div class="col-lg-8 mt-5 mt-lg-0">
-                    <form action="registro.php" method="post" role="form" class="php-email-form" data-aos="fade-down-left">
+                    <form action="registro.php" method="post" role="form" class="php-email-form" enctype="multipart/form-data" data-aos="fade-down-left">
 
 
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group">
+                            <h6>Ingresa un codigo de invitado si cuentas con uno: </h6>
                                 <input type="text" name="codigo" class="form-control" id="code_invitado" placeholder="Codigo de invitado (No requerido)" />
                                 <div class="validate"></div>
                             </div>
@@ -74,6 +75,7 @@
 
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group">
+                            <h6>Nombre de usuario:</h6>
                                 <input type="text" name="user" class="form-control" id="user" placeholder="Usuario*" data-rule="minlen:4" data-msg="Por favor introduzca un usuario valido" />
                                 <div class="validate"></div>
                             </div>
@@ -81,18 +83,21 @@
 
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group">
+                            <h6>Contraseña:</h6>
                                 <input type="password" class="form-control" name="password" id="pass" placeholder="Contraseña*" data-rule="pass:8" data-msg="Por favor introduzca una contraseña valida mayor a 8 digitos" />
                                 <div class="validate"></div>
                             </div>
                         </div>
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group">
+                            <h6>Confirma tu contraseña:</h6>
                                 <input type="password" class="form-control" name="password_validar" id="pass_valider" placeholder="Confirma Contraseña*" data-rule="conf_pass" data-msg="Las contraseñas que ingreso no son iguales" />
                                 <div class="validate"></div>
                             </div>
                         </div>
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group">
+                            <h6>Nombre:</h6>
                                 <input type="text" class="form-control" name="Nombre" id="name_user" placeholder="Nombre*" data-rule="pass:1" data-msg="Por favor introduzca una contraseña valida" />
                                 <div class="validate"></div>
                             </div>
@@ -102,6 +107,7 @@
 
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group">
+                            <h6>Apellido:</h6>
                                 <input type="text" class="form-control" name="Apellido" id="Apellido_usuario" placeholder="Apellido(s)" data-rule="pass:3" data-msg="Por favor introduzca una apellido o apellidos valido(s)" />
                                 <div class="validate"></div>
                             </div>
@@ -109,6 +115,7 @@
 
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group">
+                            <h6>Nickname en videojuegos:</h6>
                                 <input type="text" class="form-control" name="nickname" id="nickname" placeholder="Apodo de jugador (Nickname)" />
                                 <div class="validate"></div>
                             </div>
@@ -118,6 +125,7 @@
 
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group">
+                            <h6>Fecha de nacimiento:</h6>
                                 <input type="date" class="form-control" name="FechaN" id="FechaN_usuario" placeholder="FechaN_usuario" data-rule="fecha" data-msg="Por favor introduzca una fecha de nacimiento valida" />
                                 <div class="validate"></div>
                             </div>
@@ -126,6 +134,7 @@
                         </div>
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group">
+                            <h6>Sexo: </h6>
                                 <select class="form-control" name="sexo">
                                     <option value="Hombre">Hombre</option>
                                     <option value="Mujer">Mujer</option>
@@ -138,6 +147,7 @@
 
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group">
+                            <h6>Correo: </h6>
                                 <input type="email" class="form-control" name="Correo_electronico" id="Correo_electronico" placeholder="Correo electronico*" data-rule="email" data-msg="Por favor introduzca una correo electronico valido" />
                                 <div class="validate"></div>
                             </div>
@@ -146,7 +156,8 @@
                         </div>
                         <div class="form-row justify-content-center">
                             <div class="col-md-6 form-group">
-                                <input type="tel" class="form-control" name="Telefono" id="Telefono_usuario" placeholder="Telefono ej. 8341005001" pattern="[0-9]{3}[0-9]{3}[0-9]{4}"/>
+                            <h6>Telefono: </h6>
+                                <input type="tel" class="form-control" name="Telefono" id="Telefono_usuario" placeholder="Telefono ej. 8341005001" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" />
                             </div>
 
                         </div>

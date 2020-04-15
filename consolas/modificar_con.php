@@ -83,6 +83,7 @@ include_once '../forms/imgp.php';
                         echo '<li class="active"><a href="../admin.php">Administracion</a></li>';
                     } ?>
                     <li class="nav-logo"><a href="../index.php"><img src="../assets/img/xbox-control-menu.png" alt="" class="img-fluid"></a></li>
+                    <li class="active"><a href="../renta.php">Renta (BETA)</a></li>
                     <li class="active"><a href="../referidos.php">Referidos</a></li>
                     <li class="active"><a href="../forms/logout.php">Cerrar Sesión</a></li>
 
@@ -94,6 +95,21 @@ include_once '../forms/imgp.php';
             <img src="<?php echo $finalruta; ?>" alt="Avatar" class="avatar">
         </div>
     </header>
+
+    <div class="menuleft">
+        <nav>
+            <ul>
+                <li><a href="../usuarios/eliminar.php">Usuarios</a></li>
+                <li><a href="../roles/modificarrol.php">Roles</a></li>
+                <li><a href="../consolas/modificar.php">Consolas</a></li>
+                <li><a href="../tarifas/modificar.php">Tarifas</a></li>
+                <li><a href="../juegos/modificar.php">Juegos</a></li>
+                <li><a href="../torneos/modificar.php">Torneos</a></li>
+                <li><a href="../dulceria/modificar.php">Dulceria</a></li>
+                <li><a href="../promociones/view_promociones.php">Promociones</a></li>
+            </ul>
+        </nav>
+    </div>
 
 
     <!-- ======= Contact Section ======= -->

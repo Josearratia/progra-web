@@ -13,6 +13,7 @@ $renta = new renta();
 
 if (isset($_SESSION['user'])) {
     $user->setUserAndfk($userSession->getCurrentUser());
+    $promo->setpromocion(2);
 
     if ($user->getborrado() === 1) {
         include_once 'info.php';
@@ -21,13 +22,30 @@ if (isset($_SESSION['user'])) {
         if ($user->getrol() != 2) {
             $rolesaccess->setUserrolaccess($user->getuserid());
             if ($rolesaccess->getrolaccess_addconsolas() == 1) {
-                if(isset($_POST['idconsola']) && $_POST['costo'] && isset($_POST['idjuego']) &&
+                if(isset($_POST['idconsola']) && $_POST['costo'] &&
                 isset($_POST['pago'])){
-                    if($_POST['pago'] >= $_POST['costo']){
-                        $renta->add($_POST['idconsola'],$_POST['idjuego'], $_POST['pago']);
+
+                    if(isset($_POST['idjuego']) === 0){
+                        if($_POST['pago'] >= $_POST['costo']){
+                            if(isset($_POST['usuario'])){
+                                $user->updateCOINSRenta($_POST['usuario'], $promo->getmonedas());
+                            }
+
+                            $renta->add($_POST['idconsola'],$_POST['idjuego'], $_POST['pago']);
+                        }else{
+                            echo "Pago insuficiente" ;
+                        }
                     }else{
-                        echo "Pago insuficiente";
+                        if($_POST['pago'] >= $_POST['costo']){
+                            if(isset($_POST['usuario'])){
+                                $user->updateCOINSRenta($_POST['usuario'], $promo->getmonedas());
+                            }
+                            $renta->add($_POST['idconsola'],NULL, $_POST['pago']);
+                        }else{
+                            echo "Pago insuficiente " ;
+                        }
                     }
+                    
                 }else{
                     echo "Ingrese bien los datos";
                 }

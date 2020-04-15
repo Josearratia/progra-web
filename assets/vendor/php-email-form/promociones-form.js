@@ -73,6 +73,11 @@ jQuery(document).ready(function($) {
                     this_form.find('.okey-message').slideDown().html(msg);
                     setTimeout(function() { location.href = "modificar.php" }, 1000);
                     modificarrol
+                } else if (msg == 'Venta realizada') {
+                    this_form.find('.loading').slideUp();
+                    this_form.find('.okey-message').slideDown().html(msg);
+                    setTimeout(function() { location.href = "renta.php" }, 1000);
+                    modificarrol
                 } else if (msg == 'Rol Guardado') {
                     this_form.find('.loading').slideUp();
                     this_form.find('.okey-message').slideDown().html(msg);
